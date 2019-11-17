@@ -14,13 +14,13 @@ const wellSchema = new Schema({
   noteworthy: Boolean,
   inOperation: Object, //{from:, to:, always: Bool}
   ratings: [Number],
-  imageUrls: [String]
+  imageUrls: [String],
   comments: [
     {
-    type: Schema.Types.ObjectId,
-    ref: "Comment"
-  }
-]
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ]
 });
 
 const Well = mongoose.model("Well", wellSchema);

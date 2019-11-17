@@ -1,5 +1,5 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
 
 {{!-- MAP TAG --}}
 <div id="mapid"></div>
@@ -15,26 +15,28 @@
 
   //Map-Display
   L.tileLayer(
-    "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWppaCIsImEiOiJjanVwb3p2M2kxczk2M3ptcDRlc2cwYTZpIn0.B8dDJ9aejgRYjjc1hh2w1g",
+    "https://api.mapbox.com/styles/v1/pascalh91/ck33aqtwr3jfe1cjvdo6a4862/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicGFzY2FsaDkxIiwiYSI6ImNrMnp5ZXZ5OTBscmozY21xZDV2YnJtbTIifQ.jLPr-gFzHK0Wxf1SE0F3Dg",
+    /*"https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWppaCIsImEiOiJjanVwb3p2M2kxczk2M3ptcDRlc2cwYTZpIn0.B8dDJ9aejgRYjjc1hh2w1g",*/
     {
       attribution: '',
       maxZoom: 18,
-      id: "mapbox.streets",
-      accessToken: "pk.eyJ1IjoibWppaCIsImEiOiJjanVwb3p2M2kxczk2M3ptcDRlc2cwYTZpIn0.B8dDJ9aejgRYjjc1hh2w1g"
+      id: "mapbox.emerald",
+      /*accessToken: "pk.eyJ1IjoibWppaCIsImEiOiJjanVwb3p2M2kxczk2M3ptcDRlc2cwYTZpIn0.B8dDJ9aejgRYjjc1hh2w1g"*/
+      accessToken: "pk.eyJ1IjoicGFzY2FsaDkxIiwiYSI6ImNrMnp5ZXZ5OTBscmozY21xZDV2YnJtbTIifQ.jLPr-gFzHK0Wxf1SE0F3Dg"
     }).addTo(myMap);
 
   //default Map-Design
   let mapLayer = MQ.mapLayer();
-
-  //Map-Design Options
-  L.control
-    .layers({
-      Map: mapLayer,
-      Hybrid: MQ.hybridLayer(),
-      Satellite: MQ.satelliteLayer(),
-      Dark: MQ.darkLayer(),
-      Light: MQ.lightLayer()
-    }).addTo(myMap);
+ 
+   //Map-Design Options
+   L.control
+     .layers({
+       Map: mapLayer,
+       Hybrid: MQ.hybridLayer(),
+       Satellite: MQ.satelliteLayer(),
+       Dark: MQ.darkLayer(),
+       Light: MQ.lightLayer()
+     }).addTo(myMap);
 
   //Routing-Options Setup
   let dir = MQ.routing.directions();
@@ -52,8 +54,50 @@
   myMap.addLayer(
     MQ.routing.routeLayer({
       directions: dir,
-      fitBounds: true
+      fitBounds: true,
     })
   );
+
+  //----> Custom RouteLayer
+  /*CustomRouteLayer = MQ.Routing.RouteLayer.extend({
+    createStartMarker: function (location, stopNumber) {
+      var custom_icon;
+      var marker;
+
+      custom_icon = L.icon({
+        iconUrl: 'https://www.mapquestapi.com/staticmap/geticon?uri=poi-red_1.png',
+        iconSize: [20, 29],
+        iconAnchor: [10, 29],
+        popupAnchor: [0, -29]
+      });
+
+      marker = L.marker(location.latLng, { icon: custom_icon }).addTo(myMap);
+
+      return marker;
+    },
+
+    createEndMarker: function (location, stopNumber) {
+      var custom_icon;
+      var marker;
+
+      custom_icon = L.icon({
+        iconUrl: 'https://www.mapquestapi.com/staticmap/geticon?uri=poi-blue_1.png',
+        iconSize: [20, 29],
+        iconAnchor: [10, 29],
+        popupAnchor: [0, -29]
+      });
+
+      marker = L.marker(location.latLng, { icon: custom_icon }).addTo(myMap);
+
+      return marker;
+    }
+  });
+
+  myMap.addLayer(new CustomRouteLayer({
+    directions: dir,
+    fitBounds: true
+  }));*/
+
+  console.log(myMap)
 
 </script>

@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-/* GET home page */
+// GET admin dashboard
 router.get("/", (req, res, next) => {
-  res.render("index");
+  res.render("admin/errorDashboard.hbs");
 });
 
 module.exports = router;

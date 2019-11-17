@@ -14,11 +14,17 @@ router.get("/login", (req, res, next) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/user",
+    // successRedirect: "/user",
     failureRedirect: "/auth/login",
     failureFlash: true,
     passReqToCallback: true
-  })
+  }),
+  (req, res, next) => {
+    if (req.user.role === "regular") {
+      res.redirect("/user");
+    }
+    res.redirect("/admin");
+  }
 );
 
 router.get("/signup", (req, res, next) => {

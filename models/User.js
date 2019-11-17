@@ -4,16 +4,17 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema(
   {
     username: String,
-    password: String
+    password: String,
+    role: {
+      type: String,
+      enum: ["admin", "regular"],
+      default: "regular"
+    }
   },
   {
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
-    },
-    role: {
-      type: String,
-      enum: ["user", "admin"]
     }
   }
 );

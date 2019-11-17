@@ -1,2 +1,59 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+{{!-- MAP TAG --}}
+<div id="mapid"></div>
+
+
+{{!-- MAP SCRIPT --}}
+<script>
+  //Map-creation
+  let myMap = L.map("mapid", {
+    center: [52.52, 13.4],
+    zoom: 13
+  })
+
+  //Map-Display
+  L.tileLayer(
+    "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWppaCIsImEiOiJjanVwb3p2M2kxczk2M3ptcDRlc2cwYTZpIn0.B8dDJ9aejgRYjjc1hh2w1g",
+    {
+      attribution: '',
+      maxZoom: 18,
+      id: "mapbox.streets",
+      accessToken: "pk.eyJ1IjoibWppaCIsImEiOiJjanVwb3p2M2kxczk2M3ptcDRlc2cwYTZpIn0.B8dDJ9aejgRYjjc1hh2w1g"
+    }).addTo(myMap);
+
+  //default Map-Design
+  let mapLayer = MQ.mapLayer();
+
+  //Map-Design Options
+  L.control
+    .layers({
+      Map: mapLayer,
+      Hybrid: MQ.hybridLayer(),
+      Satellite: MQ.satelliteLayer(),
+      Dark: MQ.darkLayer(),
+      Light: MQ.lightLayer()
+    }).addTo(myMap);
+
+  //Routing-Options Setup
+  let dir = MQ.routing.directions();
+
+  //----> ROUTE COORDINATES
+  dir.route({
+    locations: [
+      "Berlin", //---> [0] = Start
+      { latLng: { lat: 52.6, lng: 13.5 } }, //---> [1...] = Waypoints
+      "Berlin Ostbahnhof" //---> [lastElement] = Destination
+    ]
+  });
+
+  //-----> Display Route
+  myMap.addLayer(
+    MQ.routing.routeLayer({
+      directions: dir,
+      fitBounds: true
+    })
+  );
+
+</script>

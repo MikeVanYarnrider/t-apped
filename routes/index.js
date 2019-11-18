@@ -53,4 +53,19 @@ router.post("/create", (req, res, next) => {
     });
 });
 
+router.post("/admin/:id/resolve", (req, res, next) => {
+  const { id } = req.params;
+  console.log("LOOOOOOOOK HERE   ", id);
+  // console.log("LOOOOOOOOK HERE   ", availability);
+  //collection.update(criteria, update[([, options], callback)]);
+  Well.findByIdAndUpdate({ _id: id }, { availability: "open" })
+    .then(well => {
+      console.log(well);
+      res.redirect("/admin");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 module.exports = router;

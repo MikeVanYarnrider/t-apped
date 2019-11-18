@@ -23,12 +23,6 @@ router.post("/create", (req, res, next) => {
     inOperation
   } = req.body;
 
-  // if (accessability === "on") accessability === true;
-  // else accessability === false;
-  // console.log(accessability);
-  // if (noteworthy === "on") noteworthy === true;
-  // else noteworthy === false;
-  //console.log(name, address);
   Well.create({
     name,
     address,

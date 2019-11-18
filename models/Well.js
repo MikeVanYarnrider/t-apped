@@ -12,12 +12,14 @@ const wellSchema = new Schema({
     default: "open"
   },
   accessability: {
-    type: Boolean,
-    default: true
+    type: String,
+    enum: ["on", "off"],
+    default: "on"
   },
   noteworthy: {
-    type: Boolean,
-    default: false
+    type: String,
+    enum: ["on", "off"],
+    default: "on"
   },
   inOperation: Object, //{from:, to:, always: Bool}
   ratings: [Number],

@@ -20,8 +20,8 @@ const well = [
     type: wellType,
     coordinates: { lat: 52.528544, lng: 13.432946 },
     availability: "open", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
@@ -29,8 +29,8 @@ const well = [
     type: wellType,
     coordinates: { lat: 52.499459, lng: 13.372408 },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
@@ -38,8 +38,8 @@ const well = [
     type: wellType,
     coordinates: { lat: 52.498711, lng: 13.419031 },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
@@ -47,8 +47,8 @@ const well = [
     type: wellType,
     coordinates: { lat: 52.511341, lng: 13.44879 },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
@@ -56,8 +56,8 @@ const well = [
     type: wellType,
     coordinates: { lat: 52.4958, lng: 13.373565 },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
@@ -65,8 +65,8 @@ const well = [
     type: wellType,
     coordinates: { lat: 52.493004, lng: 13.431233 },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
@@ -77,8 +77,8 @@ const well = [
       lng: 13.447446
     },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: {
       from: 5,
       to: 10
@@ -92,8 +92,8 @@ const well = [
       lng: 13.424634
     },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: {
       from: 5,
       to: 10
@@ -107,8 +107,8 @@ const well = [
       lng: 13.422743
     },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: {
       from: 5,
       to: 10
@@ -122,8 +122,8 @@ const well = [
       lng: 13.433953
     },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: {
       from: 5,
       to: 10
@@ -137,8 +137,8 @@ const well = [
       lng: 13.395816
     },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: {
       from: 5,
       to: 10
@@ -152,8 +152,8 @@ const well = [
       lng: 13.460264
     },
     availability: "closed", //"open", "not available", "closed"
-    accessability: true,
-    noteworthy: false,
+    accessability: "on",
+    noteworthy: "off",
     inOperation: {
       from: 5,
       to: 10

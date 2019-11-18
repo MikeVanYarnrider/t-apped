@@ -1,6 +1,13 @@
-<h1>User Dashboard</h1>
+<div class="bg container">
 
-<div class="container d-flex justify-content-center">
+    <h1 class="text-center p-3">Hi, {{user.username}}</h1>
 
-    <a href="/create" class="btn btn-outline-primary btn-block">Create new well</a>
+    <div class="container d-flex justify-content-center">
+        <a href="/create" class="btn btn-outline-primary btn-block">Create new well</a>
+    </div>
+
+    <canvas id="myChart" width="300" height="200" class="card shadow-sm p-3 my-3"></canvas>
+
+
 </div>
+<script src="./javascripts/charts.js"></script>

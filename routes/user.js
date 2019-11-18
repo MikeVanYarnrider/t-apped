@@ -14,7 +14,8 @@ const loginCheck = () => {
 // GET user dashboard
 router.get("/", loginCheck(), (req, res, next) => {
   if (req.user.role !== "admin") {
-    res.render("user/dashboard.hbs");
+    console.log(req.user);
+    res.render("user/dashboard.hbs", { user: req.user });
   }
 });
 

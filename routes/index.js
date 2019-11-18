@@ -2,6 +2,16 @@ const express = require("express");
 const router = express.Router();
 const Well = require("../models/Well");
 
+const loginCheck = () => {
+  return (req, res, next) => {
+    if (req.user) {
+      next();
+    } else {
+      res.redirect("/");
+    }
+  };
+};
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index.hbs");
@@ -9,8 +19,10 @@ router.get("/", (req, res, next) => {
 
 /* GET create well page */
 
-router.get("/create", (req, res, next) => {
-  res.render("create.hbs");
+router.get("/create", loginCheck(), (req, res, next) => {
+  if (req.user.role === "admin" || req.user.role === "regular") {
+    res.render("create.hbs");
+  }
 });
 
 router.post("/create", (req, res, next) => {
@@ -18,8 +30,8 @@ router.post("/create", (req, res, next) => {
     name,
     address,
     availability,
-    // accessability,
-    // noteworthy,
+    accessability,
+    noteworthy,
     inOperation
   } = req.body;
 
@@ -27,8 +39,8 @@ router.post("/create", (req, res, next) => {
     name,
     address,
     availability,
-    // accessability,
-    // noteworthy,
+    accessability,
+    noteworthy,
     inOperation
   })
     .then(newWell => {

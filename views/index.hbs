@@ -13,6 +13,38 @@
     zoom: 13
   })
 
+  //enable Geolocation at Start
+  /*myMap.locate({
+    setView: true,
+    maxZoom: 16
+  });*/
+
+  //Location-Control-Services
+  L.control.locate({
+    position: 'topleft',
+    drawCirle: false
+  })
+    .addTo(myMap);
+
+  //display marker at detected location
+  function onLocationFound(e) {
+    var radius = e.accuracy;
+
+    L.marker(e.latlng).addTo(myMap)
+      .bindPopup("You are within " + radius.toFixed(0) + " meters from this point").openPopup();
+
+    L.circle(e.latlng, radius).addTo(myMap);
+  }
+
+  myMap.on('locationfound', onLocationFound);
+
+  //error message on location detection
+  function onLocationError(e) {
+    alert(e.message);
+  }
+
+  myMap.on('locationerror', onLocationError);
+
   //Map-Display
   L.tileLayer(
     "https://api.mapbox.com/styles/v1/pascalh91/ck33aqtwr3jfe1cjvdo6a4862/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicGFzY2FsaDkxIiwiYSI6ImNrMnp5ZXZ5OTBscmozY21xZDV2YnJtbTIifQ.jLPr-gFzHK0Wxf1SE0F3Dg",
@@ -20,23 +52,25 @@
     {
       attribution: '',
       maxZoom: 18,
-      id: "mapbox.emerald",
+      id: "mapbox.street",
       /*accessToken: "pk.eyJ1IjoibWppaCIsImEiOiJjanVwb3p2M2kxczk2M3ptcDRlc2cwYTZpIn0.B8dDJ9aejgRYjjc1hh2w1g"*/
       accessToken: "pk.eyJ1IjoicGFzY2FsaDkxIiwiYSI6ImNrMnp5ZXZ5OTBscmozY21xZDV2YnJtbTIifQ.jLPr-gFzHK0Wxf1SE0F3Dg"
     }).addTo(myMap);
 
   //default Map-Design
   let mapLayer = MQ.mapLayer();
- 
-   //Map-Design Options
-   L.control
-     .layers({
-       Map: mapLayer,
-       Hybrid: MQ.hybridLayer(),
-       Satellite: MQ.satelliteLayer(),
-       Dark: MQ.darkLayer(),
-       Light: MQ.lightLayer()
-     }).addTo(myMap);
+
+  //Map-Design Options
+  L.control
+    .layers({
+      Map: mapLayer,
+      Hybrid: MQ.hybridLayer(),
+      Satellite: MQ.satelliteLayer(),
+      Dark: MQ.darkLayer(),
+      Light: MQ.lightLayer()
+    })
+    .addTo(myMap);
+
 
   //Routing-Options Setup
   let dir = MQ.routing.directions();
@@ -45,7 +79,7 @@
   dir.route({
     locations: [
       "Berlin", //---> [0] = Start
-      { latLng: { lat: 52.6, lng: 13.5 } }, //---> [1...] = Waypoints
+      { latLng: { lat: 52.5, lng: 13.45 } }, //---> [1...] = Waypoints
       "Berlin Ostbahnhof" //---> [lastElement] = Destination
     ]
   });

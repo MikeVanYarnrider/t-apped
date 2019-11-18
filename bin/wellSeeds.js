@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Well = require("../models/Well");
 
 mongoose
-  .connect("mongodb://localhost/p2-waterwell", { useNewUrlParser: true })
+  .connect("mongodb://localhost/t-apped", { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -22,7 +22,7 @@ const well = [
     availability: "open", //"open", "not available", "closed"
     accessability: true,
     noteworthy: false,
-    inOperation: { from: 5, to: 10, always: false } //[from:, to:]
+    inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
     name: "Park Gleisdreieck Ostpark",
@@ -31,7 +31,7 @@ const well = [
     availability: "closed", //"open", "not available", "closed"
     accessability: true,
     noteworthy: false,
-    inOperation: { from: 5, to: 10, always: false } //[from:, to:]
+    inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
     name: "Reichenberger Str. 18",
@@ -40,7 +40,7 @@ const well = [
     availability: "closed", //"open", "not available", "closed"
     accessability: true,
     noteworthy: false,
-    inOperation: { from: 5, to: 10, always: false } //[from:, to:]
+    inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
     name: "Comeniusplatz/ Torellstr.",
@@ -49,7 +49,7 @@ const well = [
     availability: "closed", //"open", "not available", "closed"
     accessability: true,
     noteworthy: false,
-    inOperation: { from: 5, to: 10, always: false } //[from:, to:]
+    inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
     name: "Park Gleisdreieck Westpark",
@@ -58,7 +58,7 @@ const well = [
     availability: "closed", //"open", "not available", "closed"
     accessability: true,
     noteworthy: false,
-    inOperation: { from: 5, to: 10, always: false } //[from:, to:]
+    inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
     name: "Paul-Linke Ufer",
@@ -67,7 +67,7 @@ const well = [
     availability: "closed", //"open", "not available", "closed"
     accessability: true,
     noteworthy: false,
-    inOperation: { from: 5, to: 10, always: false } //[from:, to:]
+    inOperation: { from: 5, to: 10 } //[from:, to:]
   },
   {
     name: "Marchlewskistr./Pillauerstr.",
@@ -81,8 +81,7 @@ const well = [
     noteworthy: false,
     inOperation: {
       from: 5,
-      to: 10,
-      always: false
+      to: 10
     }
   },
   {
@@ -97,8 +96,7 @@ const well = [
     noteworthy: false,
     inOperation: {
       from: 5,
-      to: 10,
-      always: false
+      to: 10
     }
   },
   {
@@ -113,8 +111,7 @@ const well = [
     noteworthy: false,
     inOperation: {
       from: 5,
-      to: 10,
-      always: false
+      to: 10
     }
   },
   {
@@ -129,8 +126,7 @@ const well = [
     noteworthy: false,
     inOperation: {
       from: 5,
-      to: 10,
-      always: false
+      to: 10
     }
   },
   {
@@ -145,8 +141,7 @@ const well = [
     noteworthy: false,
     inOperation: {
       from: 5,
-      to: 10,
-      always: false
+      to: 10
     }
   },
   {
@@ -161,8 +156,7 @@ const well = [
     noteworthy: false,
     inOperation: {
       from: 5,
-      to: 10,
-      always: false
+      to: 10
     }
   }
 ];

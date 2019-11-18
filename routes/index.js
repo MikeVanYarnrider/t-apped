@@ -53,4 +53,14 @@ router.post("/create", (req, res, next) => {
     });
 });
 
+router.get("/wells", (req, res, next) => {
+  Well.find()
+    .then(wells => {
+      res.json(wells);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 module.exports = router;

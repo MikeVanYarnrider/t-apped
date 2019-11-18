@@ -1,5 +1,10 @@
 * {
   margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: gray;
 }
 
 #mapid {
@@ -9,4 +14,16 @@
 
 .bg {
   height: 100vh;
+}
+
+#login {
+  padding-top: 50%;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1516670778397-8ead0070cb3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
+
+  input {
+    width: 100%;
+    margin: 0;
+    border-radius: 5px;
+  }
 }

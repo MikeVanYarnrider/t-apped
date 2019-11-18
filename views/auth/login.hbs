@@ -1,29 +1,30 @@
-<div class="container d-flex flex-column align-items-center justify-content-center">
+<div class="container d-flex flex-column align-items-center " id="login">
+  <div>
+    <h1 class="text-center p-3 text-white">Login</h2>
 
-  <h2>Login</h2>
 
+      <form action="/auth/login" method="POST" class="">
+        <label for="username"></label>
+        <input class="form-control" id="username" type="text" name="username" placeholder="Username">
 
-  <form action="/auth/login" method="POST" id="form-container" class="flex">
-    <label for="username">Username</label>
-    <input id="username" type="text" name="username" placeholder="JonSnow">
+        <br><br>
 
-    <br><br>
+        <label for="password"></label>
+        <input class="form-control" id="password" type="password" name="password" placeholder="Password">
+        <br>
+        {{#if message }}
+        <div class="error-message">{{ message }}</div>
+        {{/if}}
 
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" placeholder="Your password">
-    <br>
-    {{#if message }}
-    <div class="error-message">{{ message }}</div>
-    {{/if}}
+        <br><br>
 
-    <br><br>
+        <button class="btn btn-outline-light btn-block">Login</button>
 
-    <button class="btn btn-outline-secondary btn-block">Login</button>
-
-    <p class="account-message">
-      Don't have an account yet?
-      <a href="/auth/signup">Signup</a>
-    </p>
-  </form>
+        <p class="account-message">
+          Don't have an account yet?
+          <a href="/auth/signup">Signup</a>
+        </p>
+      </form>
+  </div>
 
 </div>

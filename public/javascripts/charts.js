@@ -4,6 +4,8 @@ bekomme man also rund 500 Liter Leitungswasser aber nur 2 bis 5 Flaschen Mineral
 International gesehen ist deutsches Leitungswasser gleichwohl teuer. Zum Vergleich: In den USA 
 kostet der Liter nur 0,05 Cent und liegt damit um rund 75 Prozent unter dem deutschen Preis. */
 
+/* https://www.mehrweg-mach-mit.de/getraenkeverpackungen/glasflaschen/ */
+
 const waterUsageYear = 350000; // Litre
 const avgTapWater = 1 / 500; // €
 const avgBottledWater = 0.35; // €

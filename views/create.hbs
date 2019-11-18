@@ -1,4 +1,9 @@
 <h1>Create a new well</h1>
+{{#if message}}
+<div class="alert alert-success" role="alert">
+    {{message}} - go to <a href="/">map</a>
+</div>
+{{/if}}
 
 <div class="container">
     <form action="/create" method="post">
@@ -34,9 +39,7 @@
         <button type="submit">Create new well</button>
     </form>
 
-    {{#if message}}
-    {{message}}
-    {{/if}}
+
 
 </div>
 

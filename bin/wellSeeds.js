@@ -64,7 +64,7 @@ const well = [
     name: "Paul-Linke Ufer",
     type: wellType,
     coordinates: { lat: 52.493004, lng: 13.431233 },
-    availability: "closed", //"open", "not available", "closed"
+    availability: "not available", //"open", "not available", "closed"
     accessability: "on",
     noteworthy: "off",
     inOperation: { from: 5, to: 10 } //[from:, to:]
@@ -91,7 +91,7 @@ const well = [
       lat: 52.503687,
       lng: 13.424634
     },
-    availability: "closed", //"open", "not available", "closed"
+    availability: "open", //"open", "not available", "closed"
     accessability: "on",
     noteworthy: "off",
     inOperation: {
@@ -121,7 +121,7 @@ const well = [
       lat: 52.511681,
       lng: 13.433953
     },
-    availability: "closed", //"open", "not available", "closed"
+    availability: "not available", //"open", "not available", "closed"
     accessability: "on",
     noteworthy: "off",
     inOperation: {
@@ -151,7 +151,7 @@ const well = [
       lat: 52.520015,
       lng: 13.460264
     },
-    availability: "closed", //"open", "not available", "closed"
+    availability: "not available", //"open", "not available", "closed"
     accessability: "on",
     noteworthy: "off",
     inOperation: {

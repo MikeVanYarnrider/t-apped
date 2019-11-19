@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const sslRedirect = require("heroku-ssl-redirect");
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
@@ -34,6 +36,8 @@ const debug = require("debug")(
 const app = express();
 
 // Middleware Setup
+// fix for geolocation
+app.use(sslRedirect(["other", "development", "production"]));
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -76,10 +80,6 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
-
-// fix for geolocation
-// const sslRedirect = require("heroku-ssl-redirect");
-// app.use(sslRedirect);
 
 app.use(flash());
 require("./passport")(app);

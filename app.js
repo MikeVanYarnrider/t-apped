@@ -78,8 +78,8 @@ app.use(
 );
 
 // fix for geolocation
-const sslRedirect = require("heroku-ssl-redirect");
-app.use(sslRedirect);
+// const sslRedirect = require("heroku-ssl-redirect");
+// app.use(sslRedirect);
 
 app.use(flash());
 require("./passport")(app);

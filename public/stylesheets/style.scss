@@ -4,7 +4,7 @@
 }
 
 body {
-  height: auto;
+  height: 100%;
 }
 
 #mapid {
@@ -24,4 +24,9 @@ input {
   margin: 0;
   border-radius: 5px;
   border: none;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
 }

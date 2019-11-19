@@ -3,10 +3,11 @@
   font-family: "Montserrat", sans-serif; }
 
 body {
-  background-color: gray; }
+  background-color: gray;
+  height: 100vh !important; }
 
 #mapid {
-  height: 100vh;
+  height: 100% !important;
   width: 100%; }
 
 .bg {

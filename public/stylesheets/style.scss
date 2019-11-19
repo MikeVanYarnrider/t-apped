@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: gray;
+  // background-color: gray;
 }
 
 #mapid {
@@ -22,11 +22,16 @@ body {
   background-image: url("https://images.unsplash.com/photo-1516670778397-8ead0070cb3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
   background-repeat: no-repeat;
   background-size: cover;
+}
+input {
+  width: 100%;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+}
 
-  input {
-    width: 100%;
-    margin: 0;
-    border-radius: 5px;
-    border: none;
-  }
+#dashboard {
+  // padding-top: 25px;
+  // background-color: white;
+  // height: 100vh;
 }

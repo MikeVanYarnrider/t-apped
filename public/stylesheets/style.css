@@ -7,9 +7,15 @@
 body {
   height: 100%; }
 
+.navbar {
+  position: fixed;
+  width: 100vw; }
+
 #mapid {
-  height: 95vh !important;
-  width: 100%; }
+  display: flex;
+  height: 100vh !important;
+  width: 100%;
+  z-index: 0 !important; }
 
 #login {
   padding-top: 40vh;
@@ -42,16 +48,18 @@ input {
   cursor: pointer;
   /*   overflow: hidden;  */ }
 
-.marker:hover {
-  background-image: url("../images/58889219bc2fc2ef3a1860aa.png");
-  /*   overflow: hidden;  */ }
+.winter {
+  background-image: url("../images/outofDate.png"); }
+
+.closed {
+  background-image: url("../images/notAvailable.png"); }
 
 .mapboxgl-ctrl-geocoder--input {
   width: 200px !important;
   margin: 0 20px !important; }
 
 .mapboxgl-ctrl-geocoder {
-  margin-top: 20px !important;
+  margin-top: 70px !important;
   display: flex !important;
   border-radius: 5px !important; }
 
@@ -156,5 +164,45 @@ div.filterProperty {
 
 div.filterProperty img {
   height: 25px; }
+
+div.mapFilter {
+  position: fixed;
+  z-index: 1;
+  top: 90vh;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 0 10px; }
+
+.filterButton {
+  background-color: white;
+  border-radius: 7px;
+  margin: 10px 7px;
+  padding: 5px 7px;
+  color: black;
+  text-decoration: none;
+  font-size: 0.7em;
+  border: 2px solid white;
+  outline: none; }
+
+.filterActive {
+  background-color: #f5fcff;
+  border-radius: 7px;
+  margin: 10px 7px;
+  padding: 5px 7px;
+  color: black;
+  text-decoration: none;
+  font-size: 0.7em;
+  border: 2px solid white;
+  border: 2px solid #1b6d9c;
+  outline: none; }
+
+button {
+  outline: none !important; }
+
+div.mapFilter img {
+  height: 12px;
+  width: 12px;
+  margin-right: 7px; }
 
 /*# sourceMappingURL=style.css.map */

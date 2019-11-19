@@ -35,11 +35,17 @@
 <!-- Footer -->
 {{!-- <footer class="page-footer font-small blue"> --}}
 
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+<!-- Copyright -->
+{{!--   <div class="footer-copyright text-center py-3">© 2018 Copyright:
     <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
+  </div> --}}
+<!-- Copyright -->
+
+<div class="mapFilter">
+  <button class="filterButton access" href="#"> <img src="../images/483px-Wheelchair_symbol.svg.png">Accessible</button>
+  <button class="filterButton noteWorthy" href="#"><img src="../images/5-512 copy.png">Attraction</button>
+  <button class="filterButton highRating" href="#"><img src="../images/star.png">High Rating</button>
+</div>
 
 </footer>
 <!-- Footer -->
@@ -52,7 +58,7 @@
     container: 'mapid',
     style: "mapbox://styles/pascalh91/ck34h68b101fq1co11o7pzrhi",
     center: [13.40, 52.52],
-    zoom: 10
+    zoom: 12
   });
 
   /*
@@ -110,17 +116,32 @@
     }
   
     getWells();*/
-
   // add markers to map
-  const getWells = () => {
+  const getWells = (accessFilter, noteFilter, rateFilter) => {
     axios.get('/wells').then(response => {
+      // console.log(document.querySelectorAll('button.marker'))
+
+      let buttonList = document.querySelectorAll('button.marker')
+      buttonList.length && buttonList.forEach(el => {
+        el.remove()
+      })
       response.data.forEach(well => {
 
-        console.log(well)
+        let winter = false;
+        let closed = false;
 
+        let month = new Date().getMonth()
         // create a HTML element for each feature
         let el = document.createElement('button');
         el.className = 'marker';
+        if (well.inOperation.from > month + 1 || well.inOperation.to < month + 1) {
+          el.classList.add("winter");
+          winter = true;
+        }
+        if (well.availability === "closed") {
+          el.classList.add("closed");
+          closed = true;
+        }
 
         //declaring variables
         let rating;
@@ -145,24 +166,147 @@
 
         //ratings calculation
         if (well.ratings.length) {
-          rating = (well.ratings.reduce((acc, val) => acc + val, 0)) / well.ratings.length
+          rating = (well.ratings.reduce((acc, val) => acc + val, 0)) / well.ratings.length;
+          rating = rating.toFixed(1);
         } else {
           rating = 3
         }
 
-        console.log("rating", rating)
+        //console.log("rating", rating)
 
+        let innerHTMLNormal = '<div class="header"><div style="background-image: url(' + wellImage + '); background-size: cover; background-position: center 10%; width: 90px; height: 90px; border-radius: 50%"></div><div class="filterProperty">' + access + attraction + '</div><h2></h2></div><p></br><a href="https://www.w3schools.com" target="_blank">More Information</a> </p> <div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'
+
+        let innerHTMLClosed = '<div class="header"><h2>CLOSED</h2></div><div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'
+
+        let innerHTMLWinter = '<div class="header"><h2>WINTER</h2></div><div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'
+
+        const normalPopup = () => {
+          new mapboxgl.Marker(el)
+            .setLngLat(well.coordinates)
+            .setPopup(new mapboxgl.Popup({ offset: 25 })
+              .setHTML(innerHTMLNormal))
+            .addTo(myMap);
+        }
+
+        const closedPopup = () => {
+          new mapboxgl.Marker(el)
+            .setLngLat(well.coordinates)
+            .setPopup(new mapboxgl.Popup({ offset: 25 })
+              .setHTML(innerHTMLClosed))
+            .addTo(myMap);
+        }
+
+        const winterPopup = () => {
+          new mapboxgl.Marker(el)
+            .setLngLat(well.coordinates)
+            .setPopup(new mapboxgl.Popup({ offset: 25 })
+              .setHTML(innerHTMLWinter))
+            .addTo(myMap);
+        }
+
+        const evaluation = () => {
+          if (closed) {
+            closedPopup()
+          } else if (winter) {
+            winterPopup()
+          } else {
+            normalPopup()
+          }
+        }
         // make a marker for each feature and add to the map
+        if (accessFilter === true && noteFilter === true && rateFilter === true) {
+          console.log("all filter activated")
+          if (access && attraction && rating >= 4) {
+            evaluation()
+          }
+        }
+        else if (accessFilter === true && noteFilter === true) {
+          if (access && attraction) {
+            evaluation()
+          }
+        }
+        else if (noteFilter === true && rateFilter === true) {
+          if (rating >= 4 && attraction) {
+            evaluation()
+          }
+        }
+        else if (rateFilter === true && accessFilter === true) {
+          if (rating >= 4 && access) {
+            evaluation()
+          }
+        }
+        else if (accessFilter === true) {
+          if (access) {
+            evaluation()
+          }
+        }
+        else if (noteFilter === true) {
+          if (attraction) {
+            evaluation()
+          }
+        }
+        else if (rateFilter === true) {
+          if (rating >= 4) {
+            evaluation()
+          }
+        }
+        else {
+          console.log("no filter activated")
+          evaluation()
+        };
 
-        const m = new mapboxgl.Marker(el)
-          .setLngLat(well.coordinates)
-          .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML('<div class="header"><img src=' + wellImage + ' style="width: 90px; height: 90px; border-radius: 50%" alt="Italian Trulli"><div class="filterProperty">' + access + attraction + '</div><h2></h2></div><p></br><a href="https://www.w3schools.com" target="_blank">More Information</a> </p> <div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'))
-          .addTo(myMap);
+        //console.log(m)
       });
-    })
+
+    });
   }
-  getWells()
+  getWells(false, false, false)
+
+  let accessFilter = document.querySelector('button.access')
+  let noteFilter = document.querySelector('button.noteWorthy')
+  let ratingFilter = document.querySelector('button.highRating')
+
+  let filterStatus = [false, false, false];
+
+  accessFilter.onclick = () => {
+    if (!filterStatus[0]) {
+      filterStatus[0] = true;
+      accessFilter.classList.remove("filterButton");
+      accessFilter.classList.add("filterActive");
+    } else {
+      filterStatus[0] = false
+      accessFilter.classList.remove("filterActive");
+      accessFilter.classList.add("filterButton");
+    }
+    return getWells(filterStatus[0], filterStatus[1], filterStatus[2])
+  }
+
+  noteFilter.onclick = () => {
+    if (!filterStatus[1]) {
+      filterStatus[1] = true
+      noteFilter.classList.remove("filterButton");
+      noteFilter.classList.add("filterActive");
+    } else {
+      filterStatus[1] = false
+      noteFilter.classList.remove("filterActive");
+      noteFilter.classList.add("filterButton");
+    }
+    return getWells(filterStatus[0], filterStatus[1], filterStatus[2])
+  }
+
+  ratingFilter.onclick = () => {
+    console.log("click")
+    if (!filterStatus[2]) {
+      filterStatus[2] = true
+      ratingFilter.classList.remove("filterButton");
+      ratingFilter.classList.add("filterActive");
+    } else {
+      filterStatus[2] = false
+      ratingFilter.classList.remove("filterActive");
+      ratingFilter.classList.add("filterButton");
+    }
+    return getWells(filterStatus[0], filterStatus[1], filterStatus[2])
+  }
 
 
 

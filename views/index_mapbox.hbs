@@ -1,0 +1,53 @@
+<head>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+
+
+
+
+  <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css'
+    type='text/css' />
+  <script
+    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+
+  </script>
+
+
+</head>
+
+<div id='mapid'></div>
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWppaCIsImEiOiJjanVwb3p2M2kxczk2M3ptcDRlc2cwYTZpIn0.B8dDJ9aejgRYjjc1hh2w1g';
+  var myMap = new mapboxgl.Map({
+    container: 'mapid',
+    style: "mapbox://styles/mjih/ck2zykp6a016x1co9t6vf6a26",
+    center: [13.40, 52.52],
+    zoom: 10
+  });
+
+  myMap.addControl(new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+  }));
+  //navigation
+  myMap.addControl(
+    new mapboxgl.NavigationControl()
+  );
+
+  //marker
+  let marker = new mapboxgl.Marker({
+    draggable: true,
+    color: "red"
+  }).setLngLat([13, 52]).addTo(myMap);
+
+  //geolocation
+  myMap.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+    trackUserLocation: true
+  }));
+
+</script>

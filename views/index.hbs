@@ -16,15 +16,37 @@
   </script>
 
   {{!-- Mapbox directions --}}
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
-  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
+  <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css'
+    type='text/css' />
+  <script
+    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
 
 
 </head>
 
+
+
 <div id='mapid'></div>
 
+<button type="submit">
+  <div id="bm"></div>
+</button>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+
 <script>
+
   mapboxgl.accessToken = 'pk.eyJ1IjoicGFzY2FsaDkxIiwiYSI6ImNrMnp5ZXZ5OTBscmozY21xZDV2YnJtbTIifQ.jLPr-gFzHK0Wxf1SE0F3Dg';
   var myMap = new mapboxgl.Map({
     container: 'mapid',
@@ -33,9 +55,150 @@
     zoom: 10
   });
 
+  /*
+  const getWells = () => {
+      axios.get('/wells').then(response => {
+        response.data.forEach(well => {
+          console.log(well)
+  */
+  /*const openWellOnClick = (well) => {
+    console.log(well.latlng.lat)
+    L.popup()
+      .setLatLng({
+        lat: well.latlng.lat + 0.003,
+        lng: well.latlng.lng
+      })
+      .setContent("hi. This Well is open. You can find it at " + well.latlng)
+      .openOn(myMap)
+  }
+
+  const closedWellOnClick = (well) => {
+    L.popup()
+      .setLatLng({
+        lat: well.latlng.lat + 0.003,
+        lng: well.latlng.lng
+      })
+      .setContent("Sorry. This Well is closed. You can find it at " + well.latlng)
+      .openOn(myMap)
+  }
+
+  let closedWell = L.icon({
+    iconUrl: 'https://assets.mapquestapi.com/icon/v2/incident-sm@2x.png',
+    iconSize: [20, 20],
+    iconAnchor: [10, 29],
+    popupAnchor: [0, -29]
+  });
+  let openWell = L.icon({
+    iconUrl: 'https://assets.mapquestapi.com/icon/v2/circle-white@2x.png',
+    iconSize: [20, 20],
+    iconAnchor: [10, 29],
+    popupAnchor: [0, -29]
+  });*/
+  /*
+          if (well.availability === "open") {
+            new mapboxgl.Marker()
+            .setLngLat(well.coordinates)
+            .addTo(myMap)
+  
+          } else {
+            new mapboxgl.Marker().setLngLat(well.coordinates).addTo(myMap)
+          }
+        })
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+  
+    getWells();*/
+
+  // add markers to map
+  const getWells = () => {
+    axios.get('/wells').then(response => {
+      response.data.forEach(well => {
+
+        console.log(well)
+
+        // create a HTML element for each feature
+        let el = document.createElement('button');
+        el.className = 'marker';
+
+        //declaring variables
+        let rating;
+        let wellImage = "https://www.expressplumbingidaho.com/blog/wp-content/uploads/2016/10/Drinking-Fountains.jpg";
+        let access = "";
+        let attraction = ""
+
+        //image evalutaion
+        if (well.imageUrls.length) {
+          wellImage = well.imageUrls[0]
+        }
+
+        //attraction calculation
+        if (well.noteworthy !== "off") {
+          attraction = '<img src="../images/5-512 copy.png">'
+        }
+
+        //accesability evaluation
+        if (well.accessability === "on") {
+          access = '<img src="../images/483px-Wheelchair_symbol.svg.png">'
+        }
+
+        //ratings calculation
+        if (well.ratings.length) {
+          rating = (well.ratings.reduce((acc, val) => acc + val, 0)) / well.ratings.length
+        } else {
+          rating = 3
+        }
+
+        console.log("rating", rating)
+
+        // make a marker for each feature and add to the map
+
+        const m = new mapboxgl.Marker(el)
+          .setLngLat(well.coordinates)
+          .setPopup(new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<div class="header"><img src=' + wellImage + ' style="width: 90px; height: 90px; border-radius: 50%" alt="Italian Trulli"><div class="filterProperty">' + access + attraction + '</div><h2></h2></div><p></br><a href="https://www.w3schools.com" target="_blank">More Information</a> </p> <div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'))
+          .addTo(myMap);
+      });
+    })
+  }
+  getWells()
+
+
+
+  /*let counter = 0;
+
+  let animation = bodymovin.loadAnimation({
+    container: document.getElementById("bm"), // the dom element that will contain the animation
+    renderer: "svg",
+    loop: false,
+    autoplay: false,
+    path: "../bodymovin/data.json" // the path to the animation json
+  });
+
+  document.querySelector("bm").onclick = () => {
+    console.log("hello");
+
+    if (counter % 2 === 0) {
+      animation.setDirection(1);
+    } else {
+      animation.setDirection(-1);
+    }
+    animation.play();
+
+
+    counter += 1;
+    if (counter >= 2) {
+      counter = 0;
+    }
+  };
+*/
+
+
   myMap.addControl(new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     mapboxgl: mapboxgl,
+    placeholder: "search"
   }));
   //navigation
   myMap.addControl(
@@ -43,10 +206,10 @@
   );
 
   //marker
-  let marker = new mapboxgl.Marker({
+  /*let marker = new mapboxgl.Marker({
     draggable: true,
     color: "red"
-  }).setLngLat([13, 52]).addTo(myMap);
+  }).setLngLat([13, 52]).addTo(myMap);*/
 
   //geolocation
   myMap.addControl(new mapboxgl.GeolocateControl({
@@ -56,14 +219,12 @@
     trackUserLocation: true
   }));
 
-  myMap.addControl(new MapboxDirections({
+
+  /*myMap.addControl(new MapboxDirections({
     accessToken: mapboxgl.accessToken,
         controls: {
             profileSwitcher: false,
             instructions: false
-            /*  inputs:false, */
           },
-  }), 'bottom-left');
-</script>
-
+  }), 'bottom-left');*/
 </script>

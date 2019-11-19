@@ -4,21 +4,12 @@
 }
 
 body {
-<<<<<<< HEAD
-  // background-color: gray;
-=======
-  background-color: gray;
-  height: 100vh !important;
->>>>>>> b4605aba481536ec3889b0cee8e5902ae6861430
+  height: auto;
 }
 
 #mapid {
-height: 100% !important;
+  height: 95vh !important;
   width: 100%;
-}
-
-.bg {
-  height: 100%;
 }
 
 #login {
@@ -33,10 +24,4 @@ input {
   margin: 0;
   border-radius: 5px;
   border: none;
-}
-
-#dashboard {
-  // padding-top: 25px;
-  // background-color: white;
-  // height: 100vh;
 }

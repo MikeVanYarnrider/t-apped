@@ -2,19 +2,12 @@
   margin: 0;
   font-family: "Montserrat", sans-serif; }
 
-<<<<<<< HEAD
-=======
 body {
-  background-color: gray;
-  height: 100vh !important; }
+  height: auto; }
 
->>>>>>> b4605aba481536ec3889b0cee8e5902ae6861430
 #mapid {
-  height: 100% !important;
+  height: 95vh !important;
   width: 100%; }
-
-.bg {
-  height: 100%; }
 
 #login {
   padding-top: 40vh;

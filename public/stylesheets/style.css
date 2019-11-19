@@ -2,8 +2,15 @@
   margin: 0;
   font-family: "Montserrat", sans-serif; }
 
+<<<<<<< HEAD
+=======
+body {
+  background-color: gray;
+  height: 100vh !important; }
+
+>>>>>>> b4605aba481536ec3889b0cee8e5902ae6861430
 #mapid {
-  height: 100vh;
+  height: 100% !important;
   width: 100%; }
 
 .bg {

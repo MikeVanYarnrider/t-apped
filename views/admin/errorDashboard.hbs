@@ -8,29 +8,36 @@
     {{message}}
     {{/if}}
 
+    <div class="container text-center my-5">
+        <h3>Create a new location</h3>
+        <a href="/create" class="btn btn-outline-primary btn-block">Create new well</a>
+    </div>
+    <hr>
+
     <div class="d-flex flex-wrap justify-content-center align-items-center">
-        {{#if wells}}
+        {{#if wells.length}}
+        <h3 class="my-4">{{wells.length}} well/s need your attention</h3>
         {{#each wells}}
-        <div class="card m-2" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{this.name}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{this.address}}</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
+        {{!-- <div class="card-body m-2" style="width: 18rem;"> --}}
+        <div class="card shadow-sm my-2 bg-light p-3">
+            <h5 class="card-title">{{this.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{this.address}}</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
 
-                <form action="/admin/{{this._id}}/resolve" method="post">
-                    <button type="submit" class="btn btn-outline-success">
-                        resolve issue
-                    </button>
-                </form>
+            <form action="/admin/{{this._id}}/resolve" method="post">
+                <button type="submit" class="btn btn-outline-success">
+                    resolve issue
+                </button>
+            </form>
 
-            </div>
         </div>
+        {{!-- </div> --}}
         {{/each}}
         {{else}}
         <img src="https://media1.tenor.com/images/6c95dc3bce9a5b83fc5de632ef6fcfaa/tenor.gif?itemid=11335000" alt="">
-        <p class="text-white p-5">Good job! Grab yourself a coffee!</p>
+        <p class=" p-5">Good job! Grab yourself a coffee!</p>
         {{/if}}
     </div>
 

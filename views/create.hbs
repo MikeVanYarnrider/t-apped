@@ -1,19 +1,27 @@
-<h1>Create a new well</h1>
-{{#if message}}
-<div class="alert alert-success" role="alert">
-    {{message}} - go to <a href="/">map</a>
-</div>
-{{/if}}
-
 <div class="container">
+    <div class="card shadow-sm my-3 bg-secondary p-3 text-white">
+        <h1>Create new well</h1>
+        <p>Get your direction directly using your geolocation. Click the button "GEO" and fill in your location
+            automatically</p>
+        <button class="btn btn-primary" id="los">Fill my location</button>
+    </div>
+
+    <hr>
+    <h3>Well data</h3>
+    {{#if message}}
+    <div class="alert alert-success" role="alert">
+        {{message}} - go to <a href="/">map</a>
+    </div>
+    {{/if}}
     <form action="/create" method="post">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" class="form-control">
+            <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Humboldtpark">
         </div>
         <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" id="address" name="address" class="form-control">
+            <input type="text" id="lat" name="lat" class="form-control" placeholder="latitude">
+            <input type="text" id="lng" name="lng" class="form-control" placeholder="longitude">
         </div>
         <div class="form-group">
             <label for="availability">availability</label>
@@ -39,3 +47,26 @@
         <button type="submit">Create new well</button>
     </form>
 </div>
+
+
+
+
+<script>
+    const button = document.getElementById('los');
+    button.addEventListener('click', getPosition);
+
+
+    function getPosition() {
+        if (navigator.geolocation) {
+            console.log(navigator.geolocation.getCurrentPosition(showPosition));
+        } else {
+            console.log('Your browser does not support geolocation services');
+        }
+    }
+
+    function showPosition(position) {
+        document.getElementById("lat").value = position.coords.latitude;
+        document.getElementById("lng").value = position.coords.longitude;
+    }
+
+</script>

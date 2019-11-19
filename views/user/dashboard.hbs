@@ -1,13 +1,10 @@
-<div class="bg container" id="dashboard">
+<div class="container" id="dashboard">
 
     <div class="card shadow-sm my-3 bg-primary p-3 text-white">
         <h2>Hi, {{user.username}}!</h2>
         <p>Welcome to your personal dashboard. Find here information of the water usage in Berlin and how using water
             wells help the environment to stay clean.</p>
 
-    </div>
-    <div class="container d-flex justify-content-center">
-        <a href="/create" class="btn btn-outline-primary btn-block">Create new well</a>
     </div>
     {{!-- Chart! --}}
     <canvas id="myWaterChart" width="300" height="200" class="card shadow-sm p-3 my-3"></canvas>

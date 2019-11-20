@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Well = require("../models/Well");
 
 mongoose
+  // .connect("mongodb://heroku_k6fbpvjf:jssia5c411e25qjsuk2uf1qovj@ds115166.mlab.com:15166/heroku_k6fbpvjf, { useNewUrlParser: true })
   .connect("mongodb://localhost/t-apped", { useNewUrlParser: true })
   .then(x => {
     console.log(

@@ -16,13 +16,16 @@
     <form action="/create" method="post">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Humboldtpark">
+            <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Humboldtpark" required>
         </div>
+
         <div class="form-group">
             <label for="address">Address</label>
             <input type="text" id="lat" name="lat" class="form-control" placeholder="latitude">
+            <br>
             <input type="text" id="lng" name="lng" class="form-control" placeholder="longitude">
         </div>
+
         <div class="form-group">
             <label for="availability">availability</label>
             <select type="" id="availability" name="availability" class="form-control">
@@ -31,20 +34,26 @@
                 <option value="closed">closed</option>
             </select>
         </div>
+
         <div class="form-group">
             <label for="accessability">accessability</label>
-            <input type="checkbox" id="accessability" name="accessability" class="form-control">
+            <input type="checkbox" id="accessability" name="accessability" class="form-control" required>
         </div>
+
         <div class="form-group">
             <label for="noteworthy">noteworthy</label>
-            <input type="checkbox" id="noteworthy" name="noteworthy" class="form-control">
+            <input type="checkbox" id="noteworthy" name="noteworthy" class="form-control" required>
         </div>
+
         <div class="form-group">
             <label for="inOperation">inOperation</label>
-            <input type="text" id="inOperation" name="inOperation" class="form-control">
-            <input type="text" id="inOperation" name="inOperation" class="form-control">
+            <input type="text" id="inOperation" name="inOperation" class="form-control" placeholder="from: month(mm)"
+                required>
+            <br>
+            <input type="text" id="inOperation" name="inOperation" class="form-control" placeholder="to: month(mm)"
+                required>
         </div>
-        <button type="submit">Create new well</button>
+        <button type="submit" class="btn btn-success btn-block my-4">Create new well</button>
     </form>
 </div>
 

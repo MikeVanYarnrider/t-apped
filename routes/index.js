@@ -104,11 +104,11 @@ router.get("/wells/:id/report", loginCheck(), (req, res, next) => {
 
 router.post("/wells/:id/report", (req, res, next) => {
   const { id } = req.params;
-  const { reportMsg } = req.body;
+  const { reportMsg, issue } = req.body;
   console.log(req.body);
   Well.findByIdAndUpdate(
     { _id: id },
-    { availability: "not available", $push: { reportMsg } },
+    { availability: "not available", $push: { reportMsg }, issue },
     { new: true }
   )
     .then(well => {

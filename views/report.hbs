@@ -10,11 +10,20 @@
 
     <form action="/wells/{{wellId}}/report" method="post">
         <div class="form-group">
-            <label for=""></label>
+            <select name="issue" id="issue" class="form-control">
+                <option value="dirty">Dirty af!</option>
+                <option value="noWater">No water</option>
+                <option value="broken">Tap is broken</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+
             <label for="reportMsg">Explain your issue:</label>
             <textarea class="form-control" id="reportMsg" rows="3" name="reportMsg"></textarea>
-            <br>
-            <button class="btn btn-outline-warning" type="submit">Report now!</button>
+        </div>
+        <br>
+        <button class="btn btn-outline-warning" type="submit">Report now!</button>
     </form>
     {{!-- {{#if message}}
     {{message}}

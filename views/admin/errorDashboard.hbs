@@ -22,24 +22,47 @@
         <div class="card shadow-sm my-2 bg-light p-3">
             <h5 class="card-title">{{this.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{this.address}}</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            <p>This well is {{this.issue}}</p>
+
+            <p class="card-text" id="accordion">Some quick example text to build on the card title and make up the bulk
+                of the
                 card's
                 content.</p>
 
-            <form action="/admin/{{this._id}}/resolve" method="post">
-                <button type="submit" class="btn btn-outline-success">
-                    resolve issue
-                </button>
-            </form>
+            <div class="d-flex justify-content-space-evenly">
 
+                <form action="/admin/{{this._id}}/resolve" method="post">
+                    <button type="submit" class="btn btn-outline-success">
+                        resolve issue
+                    </button>
+                </form>
+
+                {{!-- {{#if wells.reportMsg}} --}}
+
+                <button class="btn btn-outline-secondary" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Reports
+                </button>
+
+                {{!-- {{/if}} --}}
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod 't heard of them accusamus labore sustainable VHS.
+                </div>
+
+            </div>
         </div>
-        {{!-- </div> --}}
-        {{/each}}
-        {{else}}
-        <img src="https://media1.tenor.com/images/6c95dc3bce9a5b83fc5de632ef6fcfaa/tenor.gif?itemid=11335000" alt="">
-        <p class=" p-5">Good job! Grab yourself a coffee!</p>
-        {{/if}}
+
     </div>
+    {{!-- </div> --}}
+    {{/each}}
+    {{else}}
+    <img src="https://media1.tenor.com/images/6c95dc3bce9a5b83fc5de632ef6fcfaa/tenor.gif?itemid=11335000" alt="">
+    <p class=" p-5">Good job! Grab yourself a coffee!</p>
+    {{/if}}
+</div>
 
 
 </div>

@@ -73,6 +73,17 @@ router.post("/admin/:id/resolve", (req, res, next) => {
     });
 });
 
+router.get("/data", (req, res, next) => {
+  Well.find({ availability: { $not: { $eq: "not available" } } })
+    .then(wells => {
+      res.json(wells);
+    })
+    .catch(err => {
+      // next(err);
+      console.log(err);
+    });
+});
+
 router.get("/wells", (req, res, next) => {
   Well.find()
     .then(wells => {
@@ -82,7 +93,5 @@ router.get("/wells", (req, res, next) => {
       next(err);
     });
 });
-
-
 
 module.exports = router;

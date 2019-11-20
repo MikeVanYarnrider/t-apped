@@ -2,14 +2,7 @@ const mongoose = require("mongoose");
 const Well = require("../models/Well");
 
 mongoose
-<<<<<<< HEAD
   // .connect("mongodb://heroku_k6fbpvjf:jssia5c411e25qjsuk2uf1qovj@ds115166.mlab.com:15166/heroku_k6fbpvjf, { useNewUrlParser: true })
-=======
-  /*   .connect(
-    "mongodb://heroku_k6fbpvjf:jssia5c411e25qjsuk2uf1qovj@ds115166.mlab.com:15166/heroku_k6fbpvjf",
-    { useNewUrlParser: true }
-  ) */
->>>>>>> ec6801bf71e86c1385e4531aeae384325ab06be4
   .connect("mongodb://localhost/t-apped", { useNewUrlParser: true })
   .then(x => {
     console.log(

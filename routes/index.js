@@ -26,6 +26,10 @@ router.get("/create", loginCheck(), (req, res, next) => {
 });
 
 router.post("/create", (req, res, next) => {
+  let { lat, lng } = req.body;
+  lat = Number(lat);
+  lng = Number(lng);
+
   const {
     name,
     address,
@@ -38,12 +42,14 @@ router.post("/create", (req, res, next) => {
   Well.create({
     name,
     address,
+    coordinates: { lat, lng },
     availability,
     accessability,
     noteworthy,
     inOperation
   })
     .then(newWell => {
+      console.log(req.body);
       console.log(newWell);
       res.render("create.hbs", { message: "Successfully created" });
     })

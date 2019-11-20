@@ -33,8 +33,7 @@ const wellSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Comments"
     }
-  ],
-  reportMsg: [{ type: String }]
+  ]
 });
 
 const Well = mongoose.model("Well", wellSchema);

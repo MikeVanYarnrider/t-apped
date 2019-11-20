@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Well = require("../models/Well");
 
 mongoose
-  // .connect("mongodb://heroku_k6fbpvjf:jssia5c411e25qjsuk2uf1qovj@ds115166.mlab.com:15166/heroku_k6fbpvjf, { useNewUrlParser: true })
+  // .connect("mongodb://heroku_k6fbpvjf:jssia5c411e25qjsuk2uf1qovj@ds115166.mlab.com:15166/heroku_k6fbpvjf", { useNewUrlParser: true })
   .connect("mongodb://localhost/t-apped", { useNewUrlParser: true })
   .then(x => {
     console.log(
@@ -23,7 +23,7 @@ const well = [
     availability: "open", //"open", "not available", "closed"
     accessability: "off",
     noteworthy: "off",
-    inOperation: { from: 5, to: 10 } //[from:, to:]
+    inOperation: { from: 1, to: 12 } //[from:, to:]
   },
   {
     name: "Park Gleisdreieck Ostpark",
@@ -33,7 +33,7 @@ const well = [
     accessability: "on",
     noteworthy: "off",
     inOperation: {
-      from: 5,
+      from: 1,
       to: 12
     },
     ratings: [1, 4, 5] //[from:, to:]
@@ -45,7 +45,7 @@ const well = [
     availability: "closed", //"open", "not available", "closed"
     accessability: "on",
     noteworthy: "off",
-    inOperation: { from: 5, to: 10 } //[from:, to:]
+    inOperation: { from: 1, to: 12 } //[from:, to:]
   },
   {
     name: "Comeniusplatz/ Torellstr.",

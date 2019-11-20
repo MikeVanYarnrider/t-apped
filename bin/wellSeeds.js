@@ -2,7 +2,14 @@ const mongoose = require("mongoose");
 const Well = require("../models/Well");
 
 mongoose
+<<<<<<< HEAD
   // .connect("mongodb://heroku_k6fbpvjf:jssia5c411e25qjsuk2uf1qovj@ds115166.mlab.com:15166/heroku_k6fbpvjf, { useNewUrlParser: true })
+=======
+  /*   .connect(
+    "mongodb://heroku_k6fbpvjf:jssia5c411e25qjsuk2uf1qovj@ds115166.mlab.com:15166/heroku_k6fbpvjf",
+    { useNewUrlParser: true }
+  ) */
+>>>>>>> ec6801bf71e86c1385e4531aeae384325ab06be4
   .connect("mongodb://localhost/t-apped", { useNewUrlParser: true })
   .then(x => {
     console.log(
@@ -21,7 +28,7 @@ const well = [
     type: wellType,
     coordinates: { lat: 52.528544, lng: 13.432946 },
     availability: "open", //"open", "not available", "closed"
-    accessability: "on",
+    accessability: "off",
     noteworthy: "off",
     inOperation: { from: 5, to: 10 } //[from:, to:]
   },
@@ -32,7 +39,11 @@ const well = [
     availability: "closed", //"open", "not available", "closed"
     accessability: "on",
     noteworthy: "off",
-    inOperation: { from: 5, to: 10 } //[from:, to:]
+    inOperation: {
+      from: 5,
+      to: 12
+    },
+    ratings: [1, 4, 5] //[from:, to:]
   },
   {
     name: "Reichenberger Str. 18",
@@ -49,15 +60,16 @@ const well = [
     coordinates: { lat: 52.511341, lng: 13.44879 },
     availability: "closed", //"open", "not available", "closed"
     accessability: "on",
-    noteworthy: "off",
-    inOperation: { from: 5, to: 10 } //[from:, to:]
+    noteworthy: "on",
+    inOperation: { from: 5, to: 12 }, //[from:, to:]
+    ratings: [4, 4, 3]
   },
   {
     name: "Park Gleisdreieck Westpark",
     type: wellType,
     coordinates: { lat: 52.4958, lng: 13.373565 },
     availability: "closed", //"open", "not available", "closed"
-    accessability: "on",
+    accessability: "off",
     noteworthy: "off",
     inOperation: { from: 5, to: 10 } //[from:, to:]
   },
@@ -66,9 +78,13 @@ const well = [
     type: wellType,
     coordinates: { lat: 52.493004, lng: 13.431233 },
     availability: "not available", //"open", "not available", "closed"
-    accessability: "on",
+    accessability: "off",
     noteworthy: "off",
-    inOperation: { from: 5, to: 10 } //[from:, to:]
+    inOperation: { from: 5, to: 12 }, //[from:, to:]
+    ratings: [4, 5, 5],
+    imageUrls: [
+      "https://images2.minutemediacdn.com/image/upload/c_crop,h_1193,w_2121,x_0,y_64/f_auto,q_auto,w_1100/v1565279671/shape/mentalfloss/578211-gettyimages-542930526.jpg"
+    ]
   },
   {
     name: "Marchlewskistr./Pillauerstr.",
@@ -78,11 +94,11 @@ const well = [
       lng: 13.447446
     },
     availability: "closed", //"open", "not available", "closed"
-    accessability: "on",
+    accessability: "off",
     noteworthy: "off",
     inOperation: {
       from: 5,
-      to: 10
+      to: 12
     }
   },
   {
@@ -109,7 +125,7 @@ const well = [
     },
     availability: "closed", //"open", "not available", "closed"
     accessability: "on",
-    noteworthy: "off",
+    noteworthy: "on",
     inOperation: {
       from: 5,
       to: 10
@@ -142,7 +158,7 @@ const well = [
     noteworthy: "off",
     inOperation: {
       from: 5,
-      to: 10
+      to: 12
     }
   },
   {
@@ -154,10 +170,10 @@ const well = [
     },
     availability: "not available", //"open", "not available", "closed"
     accessability: "on",
-    noteworthy: "off",
+    noteworthy: "on",
     inOperation: {
       from: 5,
-      to: 10
+      to: 12
     }
   }
 ];

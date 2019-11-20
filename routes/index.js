@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Well = require("../models/Well");
+const User = require("../models/User");
+
 
 const loginCheck = () => {
   return (req, res, next) => {
@@ -80,5 +82,7 @@ router.get("/wells", (req, res, next) => {
       next(err);
     });
 });
+
+
 
 module.exports = router;

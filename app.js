@@ -68,6 +68,11 @@ hbs.registerHelper("ifUndefined", (value, options) => {
   }
 });
 
+hbs.registerHelper("rate", function(a, b) {
+  if (a >= b) return true;
+  return false;
+});
+
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
@@ -95,5 +100,8 @@ app.use("/user", userRoutes);
 
 const adminRoutes = require("./routes/admin");
 app.use("/admin", adminRoutes);
+
+const wellInfoRoutes = require("./routes/wellInfo");
+app.use("/wellInfo", wellInfoRoutes);
 
 module.exports = app;

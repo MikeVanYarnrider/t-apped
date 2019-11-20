@@ -196,8 +196,10 @@ div.overlayClosed article {
   justify-content: center;
   align-items: center; }
 
-div.overlayWinter,
-div.overlayClosed h2, p {
+div.overlayClosed h2,
+div.overlayClosed p,
+div.overlayWinter h2,
+div.overlayWinter p {
   color: white; }
 
 div.filterProperty {

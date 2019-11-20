@@ -1,84 +1,92 @@
 {{!-- <div class="container"> --}}
-  <br>
-  <br>
+<br>
+<br>
 
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      {{#each wellInfo.imageUrls}}
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      {{/each}}
-    </ol>
-    <div class="carousel-inner">
-      {{#each wellInfo.imageUrls}}
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="{{this}}" alt="First slide">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div style="height: 300px; width: 100%; background-image: url({{wellInfo.imageUrls.[0]}}); background-size: cover;  background-repeat:no-repeat;
+background-position: center center">
       </div>
-      {{/each}}
+      {{!-- <img class="d-block w-100" src="{{wellInfo.imageUrls.[0]}}" alt="First slide"> --}}
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    {{#each wellInfo.imageUrls}}
+    <div class="carousel-item">
+      <div style="height: 300px; width: 100%; background-image: url({{this}}); background-size: cover;  background-repeat:no-repeat;
+background-position: center center">
+      </div>
+      {{!-- <img class="d-block w-100" src="{{this}}" alt="First slide"> --}}
+    </div>
+    {{/each}}
   </div>
 
 
-<div class="container m-4">
- 
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
-    <main>
 
-      <div>
-        <div class="detailsRating">
-          <button class="1">s</button>
-          <button class="2">s</button>
-          <button class="3">s</button>
-          <button class="4">s</button>
-          <button class="5">s</button>
-        </div>
+
+
+<div class="m-4" style="word-wrap: break-word;">
+
+
+  <main>
+
+    <div>
+      <div class="detailsRating">
+        <button class="1">s</button>
+        <button class="2">s</button>
+        <button class="3">s</button>
+        <button class="4">s</button>
+        <button class="5">s</button>
       </div>
+    </div>
 
 
-      <h1 >{{wellInfo.name}}</h1>
+    <h1>{{wellInfo.name}}</h1>
 
-      {{!-- {{#if wellInfo.averageRating >= 4}}
+    {{!-- {{#if wellInfo.averageRating >= 4}}
     <h2>This drinking fountain is very </h2>
     {{/if}} --}}
 
 
-      {{!--  {{#rate wellInfo.averageRating 4}}{{/rate}} --}}
-      <article >
-        {{#if wellSummary}}
-        <p >{{wellSummary}}{{wellAccessInfo}}{{wellAttractionInfo}}</p>
+    {{!--  {{#rate wellInfo.averageRating 4}}{{/rate}} --}}
+    <article>
+      {{#if wellSummary}}
+      <p>{{wellSummary}}{{wellAccessInfo}}{{wellAttractionInfo}}</p>
+      {{/if}}
+    </article>
+
+    <div id="commentSection">
+      <article class="commentEmpty">
+        {{#if commentStatus}}
+        <p>{{commentStatus}}</p>
         {{/if}}
+
       </article>
-
-      <div id="commentSection">
-        <article class="commentEmpty">
-          {{#if commentStatus}}
-          <p>{{commentStatus}}</p>
-          {{/if}}
-
-        </article>
-        {{#each wellInfo.comments}}
-        <article class="comment">
-          <h2>{{!-- {{usernamer}} --}}</h2>
-          <p>{{!-- {{content}} --}}</p>
-        </article>
-        {{/each}}
-      </div>
+      {{#each wellInfo.comments}}
+      <article class="comment">
+        <h2>{{!-- {{usernamer}} --}}</h2>
+        <p>{{!-- {{content}} --}}</p>
+      </article>
+      {{/each}}
+    </div>
 
 
 
-      <form action="/auth/login" method="POST" class="">
-        {{!-- <label for="username"></label>
+    <form action="/auth/login" method="POST" class="">
+      {{!-- <label for="username"></label>
       <input class="form-control" id="username" type="text" name="username" placeholder="Username"> --}}
-        <button class="btn btn-outline-light btn-block">Send</button>
-      </form>
-    </main>
+      <button class="btn btn-outline-light btn-block">Send</button>
+    </form>
+  </main>
 </div>
 {{!-- </div> --}}
 <script>

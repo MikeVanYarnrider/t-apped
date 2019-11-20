@@ -76,7 +76,8 @@ const well = [
     inOperation: { from: 1, to: 12 }, //[from:, to:]
     ratings: [4, 5, 5],
     imageUrls: [
-      "https://images2.minutemediacdn.com/image/upload/c_crop,h_1193,w_2121,x_0,y_64/f_auto,q_auto,w_1100/v1565279671/shape/mentalfloss/578211-gettyimages-542930526.jpg"
+      "https://images2.minutemediacdn.com/image/upload/c_crop,h_1193,w_2121,x_0,y_64/f_auto,q_auto,w_1100/v1565279671/shape/mentalfloss/578211-gettyimages-542930526.jpg",
+      "https://www.fressnapf.de/medias/katze-Kitten-Freig-nger-580-500.jpg?context=bWFzdGVyfHJvb3R8NTA4MzV8aW1hZ2UvanBlZ3xoOTgvaDE1Lzk2NTgxNzE1MjMxMDIuanBnfGVjNzYzZmMwM2ZhYzAxZWFkOGUxYjQwOTU2ODA1M2QyODI5NDMzOWI2ZTJmZjgzYjk1MzhmOTk3NzJjMzJmY2E"
     ]
   },
   {

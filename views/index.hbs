@@ -125,12 +125,15 @@
       buttonList.length && buttonList.forEach(el => {
         el.remove()
       })
+
       response.data.forEach(well => {
 
         let winter = false;
         let closed = false;
+        let monthArr = ["January", "February", "March", "April", "Mai", "June", "July", "August", "September", "October", "Novemer", "December", "January"]
 
-        let month = new Date().getMonth()
+        let month = new Date().getMonth();
+        let monthStr = monthArr[well.inOperation.from];
         // create a HTML element for each feature
         let el = document.createElement('button');
         el.className = 'marker';
@@ -142,6 +145,7 @@
           el.classList.add("closed");
           closed = true;
         }
+
 
         //declaring variables
         let rating;
@@ -176,9 +180,9 @@
 
         let innerHTMLNormal = '<div class="header"><div style="background-image: url(' + wellImage + '); background-size: cover; background-position: center 10%; width: 90px; height: 90px; border-radius: 50%"></div><div class="filterProperty">' + access + attraction + '</div><h2></h2></div><p></br><a href="https://www.w3schools.com" target="_blank">More Information</a> </p> <div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'
 
-        let innerHTMLClosed = '<div class="header"><h2>CLOSED</h2></div><div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'
+        let innerHTMLClosed = '<div class="overlayClosed"><article><img src="../images/Maintenance.png"><h2>SORRY!</h2><p>This drinking-fountain is currently not working. </br> The problem will be taken care of.</p></article></div><div class="header"><div style="background-image: url(' + wellImage + '); background-size: cover; background-position: center 10%; width: 90px; height: 90px; border-radius: 50%"></div><div class="filterProperty">' + access + attraction + '</div><h2></h2></div><p></br><a href="https://www.w3schools.com" target="_blank">More Information</a> </p> <div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'
 
-        let innerHTMLWinter = '<div class="header"><h2>WINTER</h2></div><div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'
+        let innerHTMLWinter = '<div class="overlayWinter"><article><img src="../images/Low_Temperature.png"><h2>SORRY!</h2><p>Due to low temperatures this drinking-fountain is still closed until ' + monthStr + '. </p></article></div><div class="header"><div style="background-image: url(' + wellImage + '); background-size: cover; background-position: center 10%; width: 90px; height: 90px; border-radius: 50%"></div><div class="filterProperty">' + access + attraction + '</div><h2></h2></div><p></br><a href="https://www.w3schools.com" target="_blank">More Information</a> </p> <div class="popUpButtons"><a class="comments" src="#"><img src="../images/comment-box-512.png"></a><a class="report" src="#"><img src="../images/report-problem-icon_1993760.png"></a><a class="rating" src="#"><img src="/images/star.png">' + rating + '</a></div>'
 
         const normalPopup = () => {
           new mapboxgl.Marker(el)
@@ -260,6 +264,8 @@
 
     });
   }
+
+
   getWells(false, false, false)
 
   let accessFilter = document.querySelector('button.access')

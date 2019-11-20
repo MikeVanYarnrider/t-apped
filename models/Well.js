@@ -5,7 +5,11 @@ const wellSchema = new Schema({
   name: String,
   address: String,
   type: String,
-  coordinates: Object, //{lat:000, lng:000}
+  coordinates: {
+    type: Object,
+    lat: Number,
+    lng: Number
+  },
   availability: {
     type: String,
     enum: ["open", "not available", "closed"],
@@ -27,7 +31,7 @@ const wellSchema = new Schema({
   comments: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Comment"
+      ref: "Comments"
     }
   ]
 });

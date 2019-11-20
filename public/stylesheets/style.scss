@@ -35,6 +35,10 @@ input {
   border: none;
 }
 
+.header-card {
+  margin-top: 70px;
+}
+
 .card img {
   width: 100%;
   height: auto;
@@ -222,10 +226,12 @@ div.overlayClosed article {
   align-items: center;
 }
 
-div.overlayWinter,
-div.overlayClosed h2,
-p {
-  color: white;
+div.overlayClosed,
+div.overlayWinter {
+  h2,
+  p {
+    color: white;
+  }
 }
 
 div.filterProperty {

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Well = require("../models/Well");
+const User = require("../models/User");
 
 const loginCheck = () => {
   return (req, res, next) => {
@@ -72,9 +73,42 @@ router.post("/admin/:id/resolve", (req, res, next) => {
 });
 
 router.get("/wells", (req, res, next) => {
-  Well.find()
+  Well.find({ availability: "open" })
     .then(wells => {
-      res.json(wells);
+      res.render("wells.hbs", { wells });
+    })
+    .catch(err => {
+      // next(err);
+      console.log(err);
+    });
+});
+
+router.get("/wells/:id/report", loginCheck(), (req, res, next) => {
+  const wellId = req.params.id;
+  const userId = req.user._id;
+
+  if (req.user.role === "admin" || req.user.role === "regular") {
+    Well.findById({ _id: wellId })
+      .then(well => {
+        // console.log(wellId);
+        res.render("report.hbs", { well, wellId });
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
+});
+
+router.post("/wells/:id/report", (req, res, next) => {
+  const { id } = req.params;
+  Well.findByIdAndUpdate(
+    { _id: id },
+    { availability: "not available" },
+    { new: true }
+  )
+    .then(well => {
+      console.log(well);
+      res.redirect("/wells");
     })
     .catch(err => {
       next(err);

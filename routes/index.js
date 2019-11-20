@@ -3,7 +3,6 @@ const router = express.Router();
 const Well = require("../models/Well");
 const User = require("../models/User");
 
-
 const loginCheck = () => {
   return (req, res, next) => {
     if (req.user) {
@@ -63,7 +62,12 @@ router.post("/create", (req, res, next) => {
 
 router.post("/admin/:id/resolve", (req, res, next) => {
   const { id } = req.params;
-  Well.findByIdAndUpdate({ _id: id }, { availability: "open" })
+  Well.findByIdAndUpdate(
+    { _id: id },
+    { availability: "open" },
+    // FIXME delete the array of comments
+    { $set: { reportMsg: [] } }
+  )
     .then(well => {
       console.log(well);
       res.redirect("/admin");
@@ -74,9 +78,42 @@ router.post("/admin/:id/resolve", (req, res, next) => {
 });
 
 router.get("/wells", (req, res, next) => {
-  Well.find()
+  Well.find({ availability: { $not: { $eq: "not available" } } })
     .then(wells => {
-      res.json(wells);
+      res.render("wells.hbs", { wells });
+    })
+    .catch(err => {
+      // next(err);
+      console.log(err);
+    });
+});
+
+router.get("/wells/:id/report", loginCheck(), (req, res, next) => {
+  const wellId = req.params.id;
+
+  if (req.user.role === "admin" || req.user.role === "regular") {
+    Well.findById({ _id: wellId })
+      .then(well => {
+        res.render("report.hbs", { well, wellId });
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
+});
+
+router.post("/wells/:id/report", (req, res, next) => {
+  const { id } = req.params;
+  const { reportMsg } = req.body;
+  console.log(req.body);
+  Well.findByIdAndUpdate(
+    { _id: id },
+    { availability: "not available", $push: { reportMsg } },
+    { new: true }
+  )
+    .then(well => {
+      // console.log(well);
+      res.redirect("/wells");
     })
     .catch(err => {
       next(err);

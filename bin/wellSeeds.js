@@ -23,7 +23,7 @@ const well = [
     availability: "open", //"open", "not available", "closed"
     accessability: "off",
     noteworthy: "off",
-    inOperation: { from: 5, to: 10 } //[from:, to:]
+    inOperation: { from: 4, to: 10 } //[from:, to:]
   },
   {
     name: "Park Gleisdreieck Ostpark",

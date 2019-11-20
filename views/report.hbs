@@ -1,0 +1,27 @@
+<div class="container">
+    {{#with well}}
+    <div class="card shadow-sm mb-3 bg-warning p-3 header-card">
+        <h2>{{name}}</h2>
+        <p>No water? Broken? Dirty? Here is you place to report issues. Our service team gets noticed
+            and will be able
+            to fix the issues soon. Just fill out the form to help us to understand the problem better.</p>
+    </div>
+    {{/with}}
+
+    <form action="/wells/{{wellId}}/report" method="post">
+        <div class="form-group">
+            <label for=""></label>
+            <label for="reportMsg">Explain your issue:</label>
+            <textarea class="form-control" id="reportMsg" rows="3" name="reportMsg"></textarea>
+            <br>
+            <button class="btn btn-outline-warning" type="submit">Report now!</button>
+    </form>
+    {{!-- {{#if message}}
+    {{message}}
+    {{/message}} --}}
+
+
+
+
+
+</div>

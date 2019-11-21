@@ -127,8 +127,8 @@
       })
 
       response.data.forEach(well => {
-
-        console.log(well._id)
+        
+ console.log(well._id)
         let winter = false;
         let closed = false;
         let monthArr = ["January", "February", "March", "April", "Mai", "June", "July", "August", "September", "October", "Novemer", "December", "January"]
@@ -147,8 +147,8 @@
           el.classList.add("closed");
           closed = true;
         }
-
-
+        
+        
 
         //declaring variables
         let rating;
@@ -321,6 +321,13 @@
 
   /*let counter = 0;
 
+  let animation = bodymovin.loadAnimation({
+    container: document.getElementById("bm"), // the dom element that will contain the animation
+    renderer: "svg",
+    loop: false,
+    autoplay: false,
+    path: "../bodymovin/data.json" // the path to the animation json
+  });
 
   document.querySelector("bm").onclick = () => {
     console.log("hello");

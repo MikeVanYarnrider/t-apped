@@ -82,7 +82,6 @@ router.get("/:id", loginCheck(), (req, res, next) => {
           }
         }
 
-
         let commentStatus = "";
         if (!wellData.comments.length) {
           commentStatus =
@@ -98,8 +97,7 @@ router.get("/:id", loginCheck(), (req, res, next) => {
           wellAccessInfo,
           wellAttractionInfo,
           commentStatus,
-          loggedinUser: req.user,
-      
+          loggedinUser: req.user
         });
       })
       .catch(err => {
@@ -116,13 +114,15 @@ router.post("/:wellId/comment", loginCheck(), (req, res, next) => {
   const userName = req.user.username;
   const timeDate = req.body.time;
   const userRating = req.body.rating;
+  const wellId = req.body.wellId;
 
   Comments.create({
     userId: userId,
     content: content,
     userName: userName,
     userRating: userRating,
-    date: timeDate
+    date: timeDate,
+    wellId: wellId
   })
     .then(comment => {
       console.log(comment);
@@ -131,7 +131,8 @@ router.post("/:wellId/comment", loginCheck(), (req, res, next) => {
         {
           $push: {
             comments: comment._id,
-            ratings: comment.userRating
+            ratings: comment.userRating,
+            wellId: wellId
           }
         },
         {
@@ -152,5 +153,23 @@ router.post("/:wellId/comment", loginCheck(), (req, res, next) => {
       next(err);
     });
 });
+
+let wellId;
+
+router.get(
+  "/:wellId/:commentId/commentDelete",
+  loginCheck(),
+  (req, res, next) => {
+    wellId = req.params.wellId;
+
+    Comments.findByIdAndRemove({ _id: req.params.commentId })
+      .then(() => {
+        res.redirect(`/wellInfo/${wellId}`);
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
+);
 
 module.exports = router;

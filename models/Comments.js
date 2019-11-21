@@ -6,9 +6,10 @@ const commentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
+  userName: String,
   userRating: Number,
   content: String,
-  date: Date
+  date: String
 });
 
 const Comments = mongoose.model("Comments", commentSchema);

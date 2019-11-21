@@ -145,4 +145,14 @@ router.post("/wells/:id/delete", loginCheck(), (req, res, next) => {
   }
 });
 
+router.get("/profile", loginCheck(), (req, res) => {
+  if (req.user.role !== "admin") {
+    res.redirect("/user");
+  } else if (req.user.role === "admin") {
+    res.redirect("/admin");
+  } else {
+    res.redirect("/auth");
+  }
+});
+
 module.exports = router;

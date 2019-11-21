@@ -34,7 +34,11 @@ const wellSchema = new Schema({
       ref: "Comments"
     }
   ],
-  reportMsg: [{ type: String }]
+  reportMsg: [{ type: String }],
+  issueType: {
+    type: String,
+    enum: ["broken", "dirty", "missing water", "none"]
+  }
 });
 
 const Well = mongoose.model("Well", wellSchema);

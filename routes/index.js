@@ -62,7 +62,10 @@ router.post("/create", (req, res, next) => {
 
 router.post("/admin/:id/resolve", (req, res, next) => {
   const { id } = req.params;
-  Well.findByIdAndUpdate({ _id: id }, { availability: "open" })
+  Well.findByIdAndUpdate(
+    { _id: id },
+    { availability: "open", issueType: "none" }
+  )
     .then(well => {
       console.log(well);
       res.redirect("/admin");
@@ -109,11 +112,11 @@ router.get("/wells/:id/report", loginCheck(), (req, res, next) => {
 
 router.post("/wells/:id/report", (req, res, next) => {
   const { id } = req.params;
-  const { reportMsg } = req.body;
+  const { reportMsg, issueType } = req.body;
   console.log(req.body);
   Well.findByIdAndUpdate(
     { _id: id },
-    { availability: "not available", $push: { reportMsg } },
+    { availability: "not available", $push: { reportMsg }, issueType },
     { new: true }
   ).then(well => {
     // console.log(well);

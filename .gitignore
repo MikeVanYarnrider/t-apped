@@ -6,3 +6,6 @@ npm-debug.log
 
 # Environment Variables should NEVER be published
 .env
+
+# banish .DS_Store 
+.DS_Store

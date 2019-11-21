@@ -73,26 +73,61 @@ background-position: center center">
       {{#each wellInfo.comments}}
       <article class="comment">
         <section class="commentHeader">
-          <p><b>{{this.userName}}</b> | {{this.date}}</p>
+          <p><b>{{this.userName}}</b> | {{this.date}}</p> <img src="../images/UserRating-{{this.userRating}}.png">
         </section>
         <section class="commentBody">
+
           <p>{{this.content}}</p>
+          <a href="#" id="deleteLink">
+            <p class="deleteP" id="{{this.userId._id}}"></p>
+          </a>
         </section>
       </article>
       {{/each}}
     </div>
 
     <form class="form-group" id="writeComment" onsubmit="formSubmit(event)">
-      <div>
-        <div class="detailsRating">
-          <button class="1 emptyStar">s</button>
-          <button class="2 emptyStar">s</button>
-          <button class="3 emptyStar">s</button>
-          <button class="4 emptyStar">s</button>
-          <button class="5 emptyStar">s</button>
+      <div class="ratingSection">
+        {{!--   <div class="detailsRating">
+          <div id="star1" class="star 1 emptyStar"></div>
+          <div id="star2" class="star 2 emptyStar"></div>
+          <div id="star3" class="star 3 emptyStar"></div>
+          <div id="star4" class="star 4 emptyStar"></div>
+          <div id="star5" class="star 5 emptyStar"></div>
+        </div> --}}
+        <div class="star-rating">
+          <div class="star-rating__stars">
+
+            <input required="true" class="star-rating__input" type="radio" name="rating" value="1" id="rating-1" />
+
+            <label required="true" class="star-rating__label" for="rating-1" aria-label="One"></label>
+
+            <input required="true" class="star-rating__input" type="radio" name="rating" value="2" id="rating-2" />
+
+            <label required="true" class="star-rating__label" for="rating-2" aria-label="Two"></label>
+
+            <input required="true" class="star-rating__input" type="radio" name="rating" value="3" id="rating-3" />
+
+            <label required="true" class="star-rating__label" for="rating-3" aria-label="Three"></label>
+
+            <input required="true" class="star-rating__input" type="radio" name="rating" value="4" id="rating-4" />
+
+            <label required="true" class="star-rating__label" for="rating-4" aria-label="Four"></label>
+
+            <input class="star-rating__input" type="radio" name="rating" value="5" id="rating-5" />
+
+            <label required="true" class="star-rating__label" for="rating-5" aria-label="Five"></label>
+
+            <div class="star-rating__focus"></div>
+
+          </div>
+
         </div>
+
+
       </div>
-      <textarea class="form-control" id="exampleFormControlTextarea1" name="commentCommit" rows="3"></textarea>
+      <textarea required="true" class="form-control" id="exampleFormControlTextarea1" name="commentCommit" rows="3"
+        placeholder="Say something about this fountain!"></textarea>
       <button class="btn btn-primary" id="sendButton" type="submit">Send</button>
     </form>
 
@@ -102,9 +137,36 @@ background-position: center center">
     </a>
   </main>
 </div>
+
+
+
+
+
+
+
+
+
 {{!-- </div> --}}
 <script>
 
+
+  console.log("{{loggedinUser._id}}");
+
+  let comments = document.querySelectorAll(".commentBody");
+  comments.forEach(el => {
+    let match = el.getElementsByTagName("p")
+    let arr = [...match]
+    let commentId = arr[1].id
+    let pElement = el.getElementsByClassName("deleteP")
+    pElement = [...pElement][0]
+    console.log("HALLLO", pElement.innerHTML)
+    console.log("ID", commentId)
+    console.log("{{loggedinUser._id}}")
+    if (commentId === "{{loggedinUser._id}}") {
+      pElement.innerHTML = "delete"
+      console.log("ARR", arr[0])
+    }
+  })
 
   let t = {{ wellInfo.averageRating }}
   let user = "{{ loggedinUser.username }}"
@@ -114,12 +176,17 @@ background-position: center center">
   console.log(timeStamp)
 
   let userRating = 3;
-
-
   //document.getElementById('writeComment').onsubmit = () => {
   const formSubmit = (e) => {
     e.preventDefault()
     // event.preventDefault(); // prevents the default behaviour of the form
+    let star = document.getElementsByName('rating');
+    star.forEach(el => {
+      if (el.checked) {
+        userRating = el.value
+      }
+    })
+
     console.log("submit")
     axios.post("/wellInfo/{{wellInfo._id}}/comment", {
       content: document.getElementById('exampleFormControlTextarea1').value,

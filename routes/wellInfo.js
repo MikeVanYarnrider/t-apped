@@ -82,6 +82,7 @@ router.get("/:id", loginCheck(), (req, res, next) => {
           }
         }
 
+
         let commentStatus = "";
         if (!wellData.comments.length) {
           commentStatus =
@@ -97,7 +98,8 @@ router.get("/:id", loginCheck(), (req, res, next) => {
           wellAccessInfo,
           wellAttractionInfo,
           commentStatus,
-          loggedinUser: req.user
+          loggedinUser: req.user,
+      
         });
       })
       .catch(err => {
@@ -114,7 +116,7 @@ router.post("/:wellId/comment", loginCheck(), (req, res, next) => {
   const userName = req.user.username;
   const timeDate = req.body.time;
   const userRating = req.body.rating;
-  
+
   Comments.create({
     userId: userId,
     content: content,
@@ -123,12 +125,13 @@ router.post("/:wellId/comment", loginCheck(), (req, res, next) => {
     date: timeDate
   })
     .then(comment => {
-      console.log(comment)
+      console.log(comment);
       return Well.findOneAndUpdate(
         { _id: req.params.wellId },
         {
           $push: {
-            comments: comment._id
+            comments: comment._id,
+            ratings: comment.userRating
           }
         },
         {

@@ -119,8 +119,11 @@ router.post("/wells/:id/report", (req, res, next) => {
     { availability: "not available", $push: { reportMsg }, issueType },
     { new: true }
   ).then(well => {
-    // console.log(well);
-    res.redirect("/wells");
+    if (req.user.role === "regular") {
+      res.redirect("/");
+    } else {
+      res.redirect("/wells");
+    }
   });
 });
 
@@ -139,6 +142,16 @@ router.post("/wells/:id/delete", loginCheck(), (req, res, next) => {
       });
   } else {
     res.redirect("/auth/login");
+  }
+});
+
+router.get("/profile", loginCheck(), (req, res) => {
+  if (req.user.role !== "admin") {
+    res.redirect("/user");
+  } else if (req.user.role === "admin") {
+    res.redirect("/admin");
+  } else {
+    res.redirect("/auth");
   }
 });
 

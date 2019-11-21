@@ -16,53 +16,24 @@
   </div>
   <hr>
 
-  <div class="d-flex flex-wrap justify-content-center align-items-center">
-    {{#if wells.length}}
+  {{#if wells.length}}
+  <div class=>
     <h3 class="my-4">{{wells.length}} well/s need your attention</h3>
-    {{#each wells}}
-    {{!-- <div class="card-body m-2" style="width: 18rem;"> --}}
-    <div class="card shadow-sm my-2 bg-light p-3 " style="width: 100%;">
-      <h5 class="card-title">{{this.name}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{this.address}}</h6>
-      <div id="accordion">
-
-
-        <div>
-          <div class="card-body">
-            {{#if wells.reportMsg}}
-            <ul>
-              {{#each reportMsg}}
-              <li>
-                {{this}}
-
-              </li>
-              {{/each}}
-            </ul>
-            {{/if}}
-
-
-          </div>
-        </div>
-      </div>
-      <div class="d-flex">
-
-
-
+    <div class="d-flex flex-wrap">
+      {{#each wells}}
+      <div class="card col-lg-3 col-md-offset-2 shadow-sm my-2 bg-light p-3 " style="width: 100%;">
+        <h5 class="card-title">{{this.name}}</h5>
         <form action="/admin/{{this._id}}/resolve" method="post">
           <button type="submit" class="btn btn-outline-success m-3">
             resolve issue
           </button>
         </form>
       </div>
-
+      {{/each}}
     </div>
-    {{!-- </div> --}}
-    {{/each}}
-    {{else}}
-    <img src="https://media1.tenor.com/images/6c95dc3bce9a5b83fc5de632ef6fcfaa/tenor.gif?itemid=11335000" alt="">
-    <p class=" p-5">Good job! Grab yourself a coffee!</p>
-    {{/if}}
   </div>
-
-
+  {{else}}
+  <img src="https://media1.tenor.com/images/6c95dc3bce9a5b83fc5de632ef6fcfaa/tenor.gif?itemid=11335000" alt="">
+  <p class=" p-5">Good job! Grab yourself a coffee!</p>
+  {{/if}}
 </div>

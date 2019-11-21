@@ -1,6 +1,7 @@
 <div class="container">
-    <div class="header-card">
-        <h1>all wells</h1>
+    <div class="header-card d-flex">
+        <h1 class="mr-auto">all wells</h1>
+        <a href="/admin" class="btn btn-outline-primary align-self-center">Back</a>
     </div>
 
     {{#each wells}}
@@ -8,12 +9,15 @@
     <div class="card shadow-sm my-2 bg-light p-3">
         <h5 class="card-title">{{this.name}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{this.address}}</h6>
-        <a href="/wells/{{this._id}}/report">Report me!</a>
-        <form action="/wells/{{this._id}}/delete" method="post">
-            <button type="submit" class="btn btn-outline-danger"> Delete me!</button> </form>
-
+        <div class="d-flex">
+            <a href="/wells/{{this._id}}/report" class="mr-auto">Report me!</a>
+            <form action="/wells/{{this._id}}/delete" method="post">
+                <button type="submit" class="btn btn-outline-danger"> Delete me!</button> </form>
+        </div>
     </div>
     {{/each}}
+
+
 
     {{!-- {{#if message}}
     {{message}}

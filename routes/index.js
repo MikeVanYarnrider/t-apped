@@ -119,8 +119,11 @@ router.post("/wells/:id/report", (req, res, next) => {
     { availability: "not available", $push: { reportMsg }, issueType },
     { new: true }
   ).then(well => {
-    // console.log(well);
-    res.redirect("/wells");
+    if (req.user.role === "regular") {
+      res.redirect("/");
+    } else {
+      res.redirect("/wells");
+    }
   });
 });
 

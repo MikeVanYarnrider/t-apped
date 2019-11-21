@@ -19,7 +19,7 @@ router.get("/:id", loginCheck(), (req, res, next) => {
   if (req.user.role === "admin" || req.user.role === "regular") {
     Well.findById({ _id: req.params.id })
       .populate({
-        path:"comments",
+        path: "comments",
         populate: {
           path: "userId"
         }
@@ -44,9 +44,9 @@ router.get("/:id", loginCheck(), (req, res, next) => {
 
         let wellSummary = "";
         if (wellData.averageRating >= 4) {
-          wellSummary = "This Drinking-Fountain is very popular! ";
+          wellSummary = "This Drinking-Fountain is awesome and very popular! ";
         } else if (wellData.averageRating === 3) {
-          wellSummary = "This Drinking-Fountain is alright. ";
+          wellSummary = "This Drinking-Fountain is great. ";
         } else {
           wellSummary = "This Drinking-Fountain needs improvement! ";
         }
@@ -88,7 +88,7 @@ router.get("/:id", loginCheck(), (req, res, next) => {
             "No comments yet! Be the first one to leave a comment for this Drinking-Fountain!";
         }
 
-        console.log(wellData);
+        console.log("user", req.user);
         console.log(wellAttractionInfo);
         console.log("status:", commentStatus);
         res.render("wellInfo.hbs", {
@@ -96,7 +96,8 @@ router.get("/:id", loginCheck(), (req, res, next) => {
           wellSummary,
           wellAccessInfo,
           wellAttractionInfo,
-          commentStatus
+          commentStatus,
+          loggedinUser: req.user
         });
       })
       .catch(err => {
@@ -105,6 +106,48 @@ router.get("/:id", loginCheck(), (req, res, next) => {
   } else {
     res.redirect("/auth/login");
   }
+});
+
+router.post("/:wellId/comment", loginCheck(), (req, res, next) => {
+  const content = req.body.content;
+  const userId = req.user._id;
+  const userName = req.user.username;
+  const timeDate = req.body.time;
+  const userRating = req.body.rating;
+  
+  Comments.create({
+    userId: userId,
+    content: content,
+    userName: userName,
+    userRating: userRating,
+    date: timeDate
+  })
+    .then(comment => {
+      console.log(comment)
+      return Well.findOneAndUpdate(
+        { _id: req.params.wellId },
+        {
+          $push: {
+            comments: comment._id
+          }
+        },
+        {
+          new: true
+        }
+      )
+        .populate({
+          path: "comments",
+          populate: {
+            path: "userId"
+          }
+        })
+        .then(well => {
+          res.json(well.comments);
+        });
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 module.exports = router;

@@ -24,6 +24,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover; }
 
+#signup {
+  padding-top: 40vh;
+  height: 100vh; }
+
 input {
   margin: 0;
   border-radius: 5px;

@@ -75,11 +75,12 @@ background-position: center center">
         <section class="commentHeader">
           <p><b>{{this.userName}}</b> | {{this.date}}</p> <img src="../images/UserRating-{{this.userRating}}.png">
         </section>
-        <section class="commentBody">
+        <section class="commentBody" style="display: flex; justify-content: space-between">
 
-          <p>{{this.content}}</p>
-          <a href="#" id="deleteLink">
-            <p class="deleteP" id="{{this.userId._id}}"></p>
+          <p style="width: 270px">{{this.content}}</p>
+          <a href="/wellInfo/{{this.wellId}}/{{this._id}}/commentDelete" id="deleteLink">
+            <p class="deleteP" style="width: 50px; height: 100%; display: flex; justify-content: flex-end; align-items: start" id="{{this.userId._id}}"></p>
+            </form>
           </a>
         </section>
       </article>
@@ -159,21 +160,17 @@ background-position: center center">
     let commentId = arr[1].id
     let pElement = el.getElementsByClassName("deleteP")
     pElement = [...pElement][0]
-    console.log("HALLLO", pElement.innerHTML)
-    console.log("ID", commentId)
-    console.log("{{loggedinUser._id}}")
     if (commentId === "{{loggedinUser._id}}") {
-      pElement.innerHTML = "delete"
-      console.log("ARR", arr[0])
+      pElement.innerHTML = '<div style="width: 20px; display: flex; justify-content: flex-end"><img id="trashbin" style="height: 14px"  src="/images/trashcan.png"></div>'
     }
   })
 
   let t = {{ wellInfo.averageRating }}
   let user = "{{ loggedinUser.username }}"
-  console.log(user)
 
   let timeStamp = `${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDay()}.${new Date().getMonth()}.${new Date().getFullYear()}`
-  console.log(timeStamp)
+  let wellId = "{{wellInfo._id}}"
+  console.log("WELLID", wellId)
 
   let userRating = 3;
   //document.getElementById('writeComment').onsubmit = () => {
@@ -191,19 +188,36 @@ background-position: center center">
     axios.post("/wellInfo/{{wellInfo._id}}/comment", {
       content: document.getElementById('exampleFormControlTextarea1').value,
       rating: userRating,
-      time: timeStamp
+      time: timeStamp,
+      wellId: wellId
     })
       .then(response => {
         console.log(response.status)
         if (response.status === 200) {
-          console.log(response.data)
-
           location.reload()
         }
       }).catch(err => {
         console.log(err);
       })
   }
+
+  /* const formSubmitDelete = (e) => {
+      e.preventDefault()
+      axios.post("/wellInfo/{{loggedinUser._id}}/commentDelete", {
+  
+      })
+      .then(response => {
+        console.log(response.status)
+        if (response.status === 200) {
+          console.log(response.data)
+  
+          location.reload()
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+  
+    }*/
 
 
 

@@ -62,15 +62,18 @@ input {
   background-repeat: no-repeat;
   border: none !important;
   cursor: pointer;
+  z-index: 1;
   /*   overflow: hidden;  */
 }
 
 .winter {
   background-image: url("../images/outofDate.png");
+  z-index: 0;
 }
 
 .closed {
   background-image: url("../images/notAvailable.png");
+  z-index: 0;
 }
 
 .mapboxgl-ctrl-geocoder--input {
@@ -94,6 +97,7 @@ input {
 
 .mapboxgl-popup {
   max-width: 200px;
+  z-index: 5;
 }
 
 .mapboxgl-popup-content {
@@ -355,11 +359,11 @@ button.noteWorthy img {
 }
 
 #reportButtonWell:hover {
-  background-color: rgb(0, 0, 0) !important;
-  box-shadow: 2px 2px 2px black;
+  background-color: rgb(255, 193, 7) !important;
+  box-shadow: 2px 2px 6px black !important;
 }
 #reportButtonWell:active {
-  background-color: rgb(0, 0, 0) !important;
+  background-color: rgb(255, 193, 7) !important;
   /*  box-shadow: 2px 2px 2px black; */
 }
 
@@ -516,4 +520,8 @@ div.detailsRating div.fullStar {
   bottom: -0.25em;
   left: -0.25em;
   outline: 0.25rem solid lightblue;
+}
+
+#trashbin:hover {
+  height: 20px !important;
 }

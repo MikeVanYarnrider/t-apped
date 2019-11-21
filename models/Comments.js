@@ -9,7 +9,8 @@ const commentSchema = new Schema({
   userName: String,
   userRating: Number,
   content: String,
-  date: String
+  date: String,
+  wellId: String
 });
 
 const Comments = mongoose.model("Comments", commentSchema);

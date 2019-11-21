@@ -18,6 +18,10 @@ router.get("/", (req, res, next) => {
   res.render("index.hbs");
 });
 
+router.get("/about", (req, res, next) => {
+  res.render("about.hbs");
+});
+
 /* GET create well page */
 
 router.get("/create", loginCheck(), (req, res, next) => {

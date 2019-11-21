@@ -124,18 +124,22 @@ router.post("/wells/:id/report", (req, res, next) => {
   });
 });
 
-router.post("/wells/:id/delete", (req, res, next) => {
+router.post("/wells/:id/delete", loginCheck(), (req, res, next) => {
   const { id } = req.params;
   console.log(id);
-  Well.findByIdAndRemove({ _id: id })
-    .then(well => {
-      console.log(well);
-      res.redirect("/wells");
-    })
-    .catch(err => {
-      console.log(err);
-      next(err);
-    });
+  if (req.user.role === "admin") {
+    Well.findByIdAndRemove({ _id: id })
+      .then(well => {
+        console.log(well);
+        res.redirect("/wells");
+      })
+      .catch(err => {
+        console.log(err);
+        next(err);
+      });
+  } else {
+    res.redirect("/auth/login");
+  }
 });
 
 module.exports = router;

@@ -45,7 +45,7 @@ router.get("/:id", loginCheck(), (req, res, next) => {
         let wellSummary = "";
         if (wellData.averageRating >= 4) {
           wellSummary = "This Drinking-Fountain is awesome and very popular! ";
-        } else if (wellData.averageRating === 3) {
+        } else if (wellData.averageRating < 4 && wellData.averageRating >= 3) {
           wellSummary = "This Drinking-Fountain is great. ";
         } else {
           wellSummary = "This Drinking-Fountain needs improvement! ";
@@ -55,7 +55,10 @@ router.get("/:id", loginCheck(), (req, res, next) => {
         if (wellData.accessability !== "off") {
           if (wellData.averageRating >= 4) {
             wellAccessInfo = "It is accessable to people with disabilities. ";
-          } else if (wellData.averageRating === 3) {
+          } else if (
+            wellData.averageRating < 4 &&
+            wellData.averageRating >= 3
+          ) {
             wellAccessInfo = "It is accessable to people with disabilities. ";
           } else {
             wellAccessInfo =
@@ -72,7 +75,10 @@ router.get("/:id", loginCheck(), (req, res, next) => {
             if (wellData.averageRating >= 4) {
               wellAttractionInfo =
                 "It's also designed by an artist. So check it out!";
-            } else if (wellData.averageRating === 3) {
+            } else if (
+              wellData.averageRating < 4 &&
+              wellData.averageRating >= 3
+            ) {
               wellAttractionInfo =
                 "It is designed by an artist. So check it out!";
             } else {

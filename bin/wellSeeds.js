@@ -93,7 +93,10 @@ const well = [
     inOperation: {
       from: 5,
       to: 12
-    }
+    },
+    imageUrls: [
+      "https://4.imimg.com/data4/IC/SK/MY-1736226/img-20160129-wa0018-500x500.jpg"
+    ]
   },
   {
     name: "Mariannenplatz",

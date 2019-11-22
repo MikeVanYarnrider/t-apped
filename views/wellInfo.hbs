@@ -63,86 +63,86 @@ background-position: center center">
 
 
 {{!-- <div class="mainWrapperComments" style="max-width: 900px"> --}}
-  <div class="m-3" id="wellInfo" style="word-wrap: break-word;">
-    <main>
-      <div id="commentSection">
-        <h3>Comments</h3>
-        <article class="commentEmpty">
-          {{#if commentStatus}}
-          <p>{{commentStatus}}</p>
-          {{/if}}
+<div class="m-3" id="wellInfo" style="word-wrap: break-word;">
+  <main>
+    <div id="commentSection">
+      <h3>Comments</h3>
+      <article class="commentEmpty">
+        {{#if commentStatus}}
+        <p>{{commentStatus}}</p>
+        {{/if}}
 
-        </article>
-        {{#each wellInfo.comments}}
-        <article class="comment">
-          <section class="commentHeader">
-            <p><b>{{this.userName}}</b> | {{this.date}}</p> <img src="../images/UserRating-{{this.userRating}}.png">
-          </section>
-          <section class="commentBody" style="display: flex; justify-content: space-between">
+      </article>
+      {{#each wellInfo.comments}}
+      <article class="comment">
+        <section class="commentHeader">
+          <p><b>{{this.userName}}</b> | {{this.date}}</p> <img src="../images/UserRating-{{this.userRating}}.png">
+        </section>
+        <section class="commentBody" style="display: flex; justify-content: space-between">
 
-            <p style="width: 270px">{{this.content}}</p>
-            <a href="/wellInfo/{{this.wellId}}/{{this._id}}/commentDelete" id="deleteLink">
-              <p class="deleteP"
-                style="width: 50px; height: 100%; display: flex; justify-content: flex-end; align-items: start"
-                id="{{this.userId._id}}"></p>
-              </form>
-            </a>
-          </section>
-        </article>
-        {{/each}}
-      </div>
+          <p style="width: 270px">{{this.content}}</p>
+          <a href="/wellInfo/{{this.wellId}}/{{this._id}}/commentDelete" id="deleteLink">
+            <p class="deleteP"
+              style="width: 50px; height: 100%; display: flex; justify-content: flex-end; align-items: start"
+              id="{{this.userId._id}}"></p>
+            </form>
+          </a>
+        </section>
+      </article>
+      {{/each}}
+    </div>
 
-      <form class="form-group" id="writeComment" onsubmit="formSubmit(event)">
-        <div class="ratingSection">
-          {{!--   <div class="detailsRating">
+    <form class="form-group" id="writeComment" onsubmit="formSubmit(event)">
+      <div class="ratingSection">
+        {{!--   <div class="detailsRating">
           <div id="star1" class="star 1 emptyStar"></div>
           <div id="star2" class="star 2 emptyStar"></div>
           <div id="star3" class="star 3 emptyStar"></div>
           <div id="star4" class="star 4 emptyStar"></div>
           <div id="star5" class="star 5 emptyStar"></div>
         </div> --}}
-          <div class="star-rating">
-            <div class="star-rating__stars">
+        <div class="star-rating">
+          <div class="star-rating__stars">
 
-              <input required="true" class="star-rating__input" type="radio" name="rating" value="1" id="rating-1" />
+            <input required="true" class="star-rating__input" type="radio" name="rating" value="1" id="rating-1" />
 
-              <label required="true" class="star-rating__label" for="rating-1" aria-label="One"></label>
+            <label required="true" class="star-rating__label" for="rating-1" aria-label="One"></label>
 
-              <input required="true" class="star-rating__input" type="radio" name="rating" value="2" id="rating-2" />
+            <input required="true" class="star-rating__input" type="radio" name="rating" value="2" id="rating-2" />
 
-              <label required="true" class="star-rating__label" for="rating-2" aria-label="Two"></label>
+            <label required="true" class="star-rating__label" for="rating-2" aria-label="Two"></label>
 
-              <input required="true" class="star-rating__input" type="radio" name="rating" value="3" id="rating-3" />
+            <input required="true" class="star-rating__input" type="radio" name="rating" value="3" id="rating-3" />
 
-              <label required="true" class="star-rating__label" for="rating-3" aria-label="Three"></label>
+            <label required="true" class="star-rating__label" for="rating-3" aria-label="Three"></label>
 
-              <input required="true" class="star-rating__input" type="radio" name="rating" value="4" id="rating-4" />
+            <input required="true" class="star-rating__input" type="radio" name="rating" value="4" id="rating-4" />
 
-              <label required="true" class="star-rating__label" for="rating-4" aria-label="Four"></label>
+            <label required="true" class="star-rating__label" for="rating-4" aria-label="Four"></label>
 
-              <input class="star-rating__input" type="radio" name="rating" value="5" id="rating-5" />
+            <input class="star-rating__input" type="radio" name="rating" value="5" id="rating-5" />
 
-              <label required="true" class="star-rating__label" for="rating-5" aria-label="Five"></label>
+            <label required="true" class="star-rating__label" for="rating-5" aria-label="Five"></label>
 
-              <div class="star-rating__focus"></div>
-
-            </div>
+            <div class="star-rating__focus"></div>
 
           </div>
 
-
         </div>
-        <textarea required="true" class="form-control" id="exampleFormControlTextarea1" name="commentCommit" rows="3"
-          placeholder="Say something about this fountain!"></textarea>
-        <button class="btn btn-primary" id="sendButton" type="submit">Send</button>
-      </form>
 
-      <a href="/wells/{{wellInfo._id}}/report">
-        <button type="button" class="btn btn-primary bg-warning" id="reportButtonWell"><img
-            src="../images/maintenance_black.png">Fountain-Report ?</button>
-      </a>
-    </main>
-  </div>
+
+      </div>
+      <textarea required="true" class="form-control" id="exampleFormControlTextarea1" name="commentCommit" rows="3"
+        placeholder="Say something about this fountain!"></textarea>
+      <button class="btn btn-primary" id="sendButton" type="submit">Send</button>
+    </form>
+
+    <a href="/wells/{{wellInfo._id}}/report">
+      <button type="button" class="btn btn-primary bg-warning" id="reportButtonWell"><img
+          src="../images/maintenance_black.png">Fountain-Report ?</button>
+    </a>
+  </main>
+</div>
 {{!-- </div> --}}
 
 

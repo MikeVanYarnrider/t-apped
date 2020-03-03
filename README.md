@@ -19,3 +19,5 @@ t-apped uses open data from the government of Berlin, seeded in a MongoDB databa
 t-apped was created and developed by Pascal Hanke and Michael Garnreiter .
 
 https://t-apped.herokuapp.com/about
+
+Technologies: Node.js, Express.js, Passport.js, MongoDB, Bootstrap, Mapbox, handlebars

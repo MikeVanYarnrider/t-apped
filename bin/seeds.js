@@ -29,7 +29,7 @@ let users = [
   {
     username: "bob",
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-    role: "regular"
+    role: "admin"
   }
 ];
 
